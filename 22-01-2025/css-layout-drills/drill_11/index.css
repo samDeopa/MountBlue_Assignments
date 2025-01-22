@@ -1,0 +1,35 @@
+div {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  color: white;
+  position: relative;
+}
+p {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  left: 0;
+  top: 0;
+}
+.div1 {
+  height: 500px;
+  width: 200px;
+  background-color: gray;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+}
+
+.div2 {
+  background-color: black;
+  display: flex;
+  height: 200px;
+  width: 150px;
+  align-items: end;
+  justify-content: end;
+}
+.div3 {
+  background-color: gainsboro;
+  margin: 10px;
+}

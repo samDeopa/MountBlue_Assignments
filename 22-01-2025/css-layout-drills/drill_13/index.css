@@ -1,0 +1,54 @@
+div {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  color: white;
+}
+
+.container {
+  height: 800px;
+  width: 800px;
+  background-color: white;
+}
+p {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  left: 0;
+  top: 0;
+}
+.div1 {
+  position: relative;
+}
+
+.div2 {
+  position: relative;
+  left: 50px;
+  bottom: 50px;
+  background-color: gray;
+}
+
+.div3 {
+  position: relative;
+  left: 100px;
+  bottom: 100px;
+}
+.div4 {
+  position: relative;
+  left: 150px;
+  bottom: 150px;
+  background-color: gray;
+}
+
+.div5 {
+  position: relative;
+  left: 200px;
+  bottom: 200px;
+}
+
+.div6 {
+  position: relative;
+  left: 250px;
+  bottom: 250px;
+  background-color: gray;
+}

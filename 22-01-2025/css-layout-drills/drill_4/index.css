@@ -1,0 +1,16 @@
+div {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  color: white;
+}
+.div1 {
+  position: absolute;
+}
+
+.div2 {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  background-color: gray;
+}

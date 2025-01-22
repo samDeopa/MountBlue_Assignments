@@ -1,0 +1,20 @@
+Process and ports
+    1.ps -e -o pid,ppid,command | grep "Google Chrome" //get all the processes that have the name as google chrome
+    2. killall -9 "Google Chrome"  //kill all the processes that have the name as google chrome
+    3. ps -e -o pid,ppid,%cpu,comm | sort -k 3 -nr | head -n 3 //list all the proccesses and their pid, ppid, cpu usage, and sort based on column 3 which is cpu usage 
+    4. ps -e -o pid,ppid,%mem,comm | sort -k 3 -nr | head -n 3//list all the proccesses and their pid, ppid, memeory usage, and sort based on column 3 which is memory usage
+    5. python3 -m http.server 8000 //start a http server at port 8000
+    6. python3 -m http.server 8000, ps -e  | grep "http.server", kill {pid} //get the process with name http.server and kill it using its pid
+    6. python3 -m http.server 30 // runs the server at port 30 only if we are in admin mode else it gives a error 
+    7. netstat -a 
+    8. netstat -an  | grep 5432 //lists the process running at port 5432
+
+Managing Software
+    1. brew install htop vim nginx
+    2. brew uninstall nginx
+
+Misc
+    1. ifconfig -a // local ip address listed under active in my case e0
+    2. ping google.com // returns the ip address of google and pings it every few ms
+    3. ping google.com // if we have active internet we shoud send and recieve some packages
+    4. which node // returns the path to the node file 

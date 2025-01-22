@@ -1,0 +1,50 @@
+.block {
+  width: 200px;
+  height: 200px;
+  background-color: black;
+  color: white;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+}
+.sub-container {
+  justify-content: space-between;
+  display: flex;
+  align-items: end;
+}
+.sub-container-2 {
+  position: relative;
+  bottom: 40px;
+}
+p {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  left: 0;
+  top: 0;
+}
+
+.div1 {
+  height: 300px;
+  width: 300px;
+  background-color: gray;
+  position: relative;
+}
+
+.div2 {
+  align-self: start;
+  position: relative;
+}
+
+.div3 {
+  position: relative;
+}
+
+.div4 {
+  position: relative;
+  height: 300px;
+  width: 300px;
+  background-color: gray;
+}
