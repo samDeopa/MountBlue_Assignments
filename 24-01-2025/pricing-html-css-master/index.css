@@ -1,0 +1,59 @@
+.container {
+  background-color: #f7f7fe;
+
+  height: 100vh;
+  width: 100%;
+}
+
+.card {
+  /* background-color: hsl(236, 72%, 79%); */
+  /* background-image: linear-gradient(hsl(236, 72%, 79%), hsl(237, 63%, 64%)); */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 20px;
+  text-align: center;
+  width: 250px;
+  font-size: 15px;
+}
+.card-blue {
+  background-image: linear-gradient(hsl(236, 72%, 79%), hsl(237, 63%, 64%));
+}
+hr {
+  border-top: 1px solid #fff;
+}
+p {
+  font-size: 15px;
+  color: #000;
+  font-family: Montserrat;
+  font-weight: 500;
+}
+.price {
+  font-size: 60px;
+  font-weight: 700;
+  margin: 20px 0;
+}
+button {
+  background-image: linear-gradient(
+    to right,
+    hsl(236, 72%, 79%),
+    hsl(237, 63%, 64%)
+  );
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+}
+.button-white {
+  background-image: none;
+  background-color: #fff;
+  font-weight: 600;
+  color: hsl(237, 63%, 64%);
+}
