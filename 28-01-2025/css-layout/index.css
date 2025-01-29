@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 50px;
+  background-color: rgb(93, 93, 251);
+}
+.container1 {
+  display: flex;
+  gap: 50px;
+}
+.container2 {
+  display: flex;
+  gap: 50px;
+}
+.container3 {
+  display: flex;
+  gap: 50px;
+}
+
+.box-h {
+  height: 150px;
+  width: 50px;
+  background-color: orange;
+}
+
+.box-v {
+  width: 150px;
+  height: 50px;
+  background-color: orange;
+}
