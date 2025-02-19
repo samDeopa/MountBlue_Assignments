@@ -145,6 +145,4 @@ const lipsumEdit = (
     console.log(err);
   }
 };
-lipsumEdit();
-lipsumEdit("./files/lipsum.txt", "./filenames.txt");
 module.exports = { lipsumEdit };
