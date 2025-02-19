@@ -9,7 +9,7 @@
 const fs = require("fs");
 //------------------waiting for all the files being created then deleting the all the created file -----------------------
 
-const createFilesThenDeleteAll = (n) => {
+const createFilesThenDeleteAll = (n = 4) => {
   try {
     const fileDir = "./files";
     if (!fs.existsSync(fileDir)) {
@@ -54,7 +54,7 @@ const createFileHelper = (n, fileDir) => {
 };
 
 // -------------------Creating and Deleting file in the callback instantly when the file is created------------------------
-const createAndDeleteSimultaneously = (n) => {
+const createAndDeleteSimultaneously = (n = 4) => {
   try {
     const fileDir = "./files";
     if (!fs.existsSync(fileDir)) {
@@ -75,14 +75,14 @@ const createAndDeleteSimultaneously = (n) => {
 
 const creteFileSimulHelper = (n, fileDir) => {
   for (let i = 0; i < n; i++) {
-    fs.writeFile(`./files/file${i}.js`, "const file = 'random'", (err) => {
+    fs.writeFile(`${fileDir}/file${i}.js`, "const file = 'random'", (err) => {
       if (err) {
         console.log(err);
         return;
       }
 
       console.log(`created file ${i}.js successfully`);
-      fs.rm(`./files/file${i}.js`, (err) => {
+      fs.rm(`${fileDir}/file${i}.js`, (err) => {
         if (err) {
           console.log(err);
           return;
