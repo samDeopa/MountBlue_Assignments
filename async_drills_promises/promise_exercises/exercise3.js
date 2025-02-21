@@ -54,17 +54,23 @@ promise
   })
   .then((res) => {
     console.log(res);
+  })
+  .catch((err) => {
+    console.log(err);
   });
 
-promise.then((res) => {
-  console.log("Promise 2 Initiated");
-
-  const resolveTimer = 10 * 1000;
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve("Second promise chain complete!");
-    }, resolveTimer);
-  }).then((res) => {
+promise
+  .then((res) => {
+    const resolveTimer = 10 * 1000;
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("Second promise chain complete!");
+      }, resolveTimer);
+    });
+  })
+  .then((res) => {
     console.log(res);
+  })
+  .catch((err) => {
+    console.log(err);
   });
-});
