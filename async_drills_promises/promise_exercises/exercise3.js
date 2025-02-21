@@ -30,6 +30,20 @@
     BONUS: WHY does it work this way?
 */
 
+/*
+BONUS: Promise with Multiple .then Handlers
+
+Promises allow for multiple .then() handlers to be attached. 
+This is because .then() does not consume the promise. Instead, it creates a new promise that resolves with the return value of the handler.
+All attached .then() handlers are queued and executed sequentially once the original promise resolves.
+
+Code  utput:
+
+- "First promise chain complete!" will be logged after 7 seconds.
+- "Second promise chain complete!" will be logged after 15 seconds.
+
+This demonstrates that multiple .then() calls can be used to perform different operations on the result of a single promise.
+*/
 console.log("Program started");
 
 const promise = new Promise((resolve, reject) => {
