@@ -13,33 +13,43 @@ const fs2 = require("fs");
 const createFilesThenDeleteAll = async (n = 4) => {
   try {
     const fileDir = "./files";
-    if (!fs2.existsSync(fileDir)) {
-      await fs.mkdir("./files");
-      createFileHelper(n, fileDir);
-    } else {
-      createFileHelper(n, fileDir);
-    }
+
+    fs.mkdir("./files", { recursive: true }).then(() =>
+      createFileHelper(n, fileDir)
+    );
   } catch (err) {
     console.log(err);
   }
 };
 
 const createFileHelper = async (n, fileDir) => {
-  const filePathList = [];
-  for (let i = 0; i < n; i++) {
-    const filePath = `${fileDir}/file${i}.js`;
-    //simulating random creation time for a file
-    setTimeout(async () => {
-      await fs.writeFile(filePath, `const file = ${fileDir}/file${i}.js;`);
-      console.log(`Created ${filePath} successfully!`);
-      filePathList.push(filePath);
-      if (filePathList.length == n) {
-        filePathList.forEach(async (file) => {
-          await fs.rm(file);
-          console.log(`Deleted ${file} successfully!`);
-        });
-      }
-    }, Math.random() * 100);
+  try {
+    const filePathList = [];
+    for (let i = 0; i < n; i++) {
+      const filePath = `${fileDir}/file${i}.js`;
+      //simulating random creation time for a file
+      setTimeout(async () => {
+        try {
+          fs.writeFile(filePath, `const file = ${fileDir}/file${i}.js;`).then(
+            () => {
+              console.log(`Created ${filePath} successfully!`);
+              filePathList.push(filePath);
+              if (filePathList.length == n) {
+                filePathList.forEach((file) => {
+                  fs.rm(file).then(() =>
+                    console.log(`Deleted ${file} successfully!`)
+                  );
+                });
+              }
+            }
+          );
+        } catch (err) {
+          console.log(err);
+        }
+      }, Math.random() * 100);
+    }
+  } catch (err) {
+    console.log(err);
   }
 };
 
@@ -47,17 +57,15 @@ const createFileHelper = async (n, fileDir) => {
 const createAndDeleteSimultaneously = (n = 4) => {
   try {
     const fileDir = "./files";
-    if (!fs2.existsSync(fileDir)) {
-      fs.mkdir(fileDir).then((err) => {
+    fs.mkdir(fileDir, { recursive: true })
+      .then((err) => {
         if (err) {
           console.log(err);
           return;
         }
         creteFileSimulHelper(n, fileDir);
-      });
-    } else {
-      creteFileSimulHelper(n, fileDir);
-    }
+      })
+      .catch((err) => console.log(err));
   } catch (error) {
     console.log(error);
   }
@@ -65,28 +73,29 @@ const createAndDeleteSimultaneously = (n = 4) => {
 
 const creteFileSimulHelper = (n, fileDir) => {
   for (let i = 0; i < n; i++) {
-    fs.writeFile(`${fileDir}/file${i}.js`, "const file = 'random'").then(
-      (err) => {
+    fs.writeFile(`${fileDir}/file${i}.js`, "const file = 'random'")
+      .then((err) => {
         if (err) {
-          console.log(err);
-          return;
+          throw err;
         }
         //simulating random creation time for a file
         setTimeout(() => {
           console.log(`created file ${i}.js successfully`);
-          fs.rm(`${fileDir}/file${i}.js`).then((err) => {
-            if (err) {
-              console.log(err);
-              return;
-            }
-            console.log(`deleted file ${i}.js successfully`);
-          });
+          fs.rm(`${fileDir}/file${i}.js`)
+            .then((err) => {
+              if (err) {
+                console.log(err);
+                return;
+              }
+              console.log(`deleted file ${i}.js successfully`);
+            })
+            .catch((err) => console.log(err));
         }, Math.random() * 100);
-      }
-    );
+      })
+      .catch((err) => console.log(err));
   }
 };
 
 const num = Math.floor(Math.random() * 100);
-createAndDeleteSimultaneously(num);
+createFilesThenDeleteAll(num);
 module.exports = { createFilesThenDeleteAll, createAndDeleteSimultaneously };

@@ -9,23 +9,46 @@
         5. Read the contents of filenames.txt and delete all the new files that are mentioned in that list simultaneously.
 */
 
-const fs = require("fs").promises;
+const fs = require("fs");
 
 const processLipsumFile = (
   inputFilePath = "./files/lipsum.txt",
   filenamesListPath = "./filenames.txt"
 ) => {
-  fs.readFile(inputFilePath, { encoding: "utf-8" })
+  const readPromise = new Promise((resolve, reject) => {
+    fs.readFile(inputFilePath, { encoding: "utf-8" }, (err, content) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(content);
+    });
+  });
+  readPromise
     .then((content) => {
       console.log(`Read operation on ${inputFilePath} successful.\n`);
       const upperCaseContent = content.toUpperCase();
       const upperCaseFile = "lipsumUppercase.txt";
       const upperCaseFilePath = `./files/${upperCaseFile}`;
-      return fs
-        .writeFile(upperCaseFilePath, upperCaseContent)
+      const writePromise = new Promise((resolve, reject) => {
+        fs.writeFile(upperCaseFilePath, upperCaseContent, (err) => {
+          if (err) {
+            reject(err);
+          }
+          resolve();
+        });
+      });
+      return writePromise
         .then(() => {
           console.log(`Write operation in ${upperCaseFilePath} successful.\n`);
-          return fs.appendFile(filenamesListPath, `${upperCaseFile}\n`);
+          const appendPromise = new Promise((resolve, reject) => {
+            fs.appendFile(filenamesListPath, `${upperCaseFile}\n`, (err) => {
+              if (err) {
+                reject(err);
+              }
+              resolve();
+            });
+          });
+          return appendPromise;
         })
         .then(() => {
           console.log(`Appended ${upperCaseFile} to ${filenamesListPath}.\n`);
@@ -39,17 +62,46 @@ const processLipsumFile = (
 };
 
 const processSentences = (upperCaseFilePath, filenamesListPath) => {
-  fs.readFile(upperCaseFilePath, { encoding: "utf-8" })
+  const readPromise = new Promise((resolve, reject) => {
+    fs.readFile(upperCaseFilePath, { encoding: "utf-8" }, (err, content) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(content);
+    });
+  });
+  readPromise
     .then((content) => {
       console.log(`Read operation on ${upperCaseFilePath} successful.\n`);
       const sentences = content.split(".").join(".\n");
       const sentencesFile = "sentences.txt";
       const sentencesFilePath = `./files/${sentencesFile}`;
 
-      fs.writeFile(sentencesFilePath, sentences, { encoding: "utf-8" })
+      const writePromise = new Promise((resolve, reject) => {
+        fs.writeFile(
+          sentencesFilePath,
+          sentences,
+          { encoding: "utf-8" },
+          (err) => {
+            if (err) {
+              reject(err);
+            }
+            resolve();
+          }
+        );
+      });
+      writePromise
         .then(() => {
           console.log(`Write operation in ${sentencesFilePath} successful.\n`);
-          return fs.appendFile(filenamesListPath, `${sentencesFile}\n`);
+          const appendPromise = new Promise((resolve, reject) => {
+            fs.appendFile(filenamesListPath, `${sentencesFile}\n`, (err) => {
+              if (err) {
+                reject(err);
+              }
+              resolve();
+            });
+          });
+          return appendPromise;
         })
         .then(() => {
           console.log(`Appended ${sentencesFile} to ${filenamesListPath}.\n`);
@@ -65,17 +117,46 @@ const processSentences = (upperCaseFilePath, filenamesListPath) => {
 };
 
 const processSortedSentences = (sentencesFilePath, filenamesListPath) => {
-  fs.readFile(sentencesFilePath, { encoding: "utf-8" })
+  const readPromise = new Promise((resolve, reject) => {
+    fs.readFile(sentencesFilePath, { encoding: "utf-8" }, (err, content) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(content);
+    });
+  });
+  readPromise
     .then((content) => {
       console.log(`Read operation on ${sentencesFilePath} successful.\n`);
       const sortedContent = content.split("\n").sort().join("\n");
       const sortedFile = "sortedSentences.txt";
       const sortedFilePath = `./files/${sortedFile}`;
 
-      fs.writeFile(sortedFilePath, sortedContent)
+      const writePromise = new Promise((resolve, reject) => {
+        fs.writeFile(
+          sortedFilePath,
+          sortedContent,
+          { encoding: "utf-8" },
+          (err) => {
+            if (err) {
+              reject(err);
+            }
+            resolve();
+          }
+        );
+      });
+      writePromise
         .then(() => {
           console.log(`Write operation in ${sortedFilePath} successful.\n`);
-          return fs.appendFile(filenamesListPath, `${sortedFile}\n`);
+          const appendPromise = new Promise((resolve, reject) => {
+            fs.appendFile(filenamesListPath, `${sortedFile}\n`, (err) => {
+              if (err) {
+                reject(err);
+              }
+              resolve();
+            });
+          });
+          return appendPromise;
         })
         .then(() => {
           console.log(`Appended ${sortedFile} to ${filenamesListPath}.\n`);
@@ -88,13 +169,29 @@ const processSortedSentences = (sentencesFilePath, filenamesListPath) => {
 };
 
 const deleteFiles = (filenamesListPath) => {
-  fs.readFile(filenamesListPath, { encoding: "utf-8" })
+  const readPromise = new Promise((resolve, reject) => {
+    fs.readFile(filenamesListPath, { encoding: "utf-8" }, (err, content) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(content);
+    });
+  });
+  readPromise
     .then((fileNames) => {
       console.log(`Read operation on ${filenamesListPath} successful.\n`);
       const deletionPromises = fileNames.split("\n").map((file) => {
         const filePath = `./files/${file.trim()}`;
         if (file) {
-          return fs.rm(filePath).then(() => {
+          const deletePromise = new Promise((resolve, reject) => {
+            fs.rm(filePath, (err) => {
+              if (err) {
+                reject(err);
+              }
+              resolve();
+            });
+          });
+          return deletePromise.then(() => {
             console.log(`Deleted ${filePath} successfully.`);
           });
         }
@@ -102,7 +199,15 @@ const deleteFiles = (filenamesListPath) => {
       Promise.all(deletionPromises)
         .then(() => {
           console.log("Deleted All the files Successfully");
-          return fs.writeFile(filenamesListPath, "");
+          const clearPromise = new Promise((resolve, reject) => {
+            fs.writeFile(filenamesListPath, "", (err) => {
+              if (err) {
+                reject(err);
+              }
+              resolve();
+            });
+          });
+          return clearPromise;
         })
         .then(() => {
           console.log(`Cleared ${filenamesListPath} successfully.`);

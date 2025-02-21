@@ -114,5 +114,5 @@ const createFileSimulHelper = (n, fileDir) => {
 };
 
 const num = Math.floor(Math.random() * 100);
-createAndDeleteSimultaneously(num);
+createAndDeleteSimultaneously(100);
 module.exports = { createFilesThenDeleteAll, createAndDeleteSimultaneously };
