@@ -37,7 +37,7 @@ Promises allow for multiple .then() handlers to be attached.
 This is because .then() does not consume the promise. Instead, it creates a new promise that resolves with the return value of the handler.
 All attached .then() handlers are queued and executed sequentially once the original promise resolves.
 
-Code  utput:
+Code Output:
 
 - "First promise chain complete!" will be logged after 7 seconds.
 - "Second promise chain complete!" will be logged after 15 seconds.
