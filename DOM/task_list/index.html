@@ -6,6 +6,25 @@
     <title>Document</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body></body>
+  <body>
+    <div>
+      <div class="header">
+        <h1>Transfer List</h1>
+      </div>
+      <div class="container">
+        <div onchange="handleCheck(event,'left')" class="list list-left"></div>
+        <div class="controller">
+          <button onclick="shiftLeftAll()">&lt;&lt;</button>
+          <button onclick="shiftLeft()" disabled>&lt;</button>
+          <button onclick="shiftRight()" disabled>&gt;</button>
+          <button onclick="shiftRightAll()">&gt;&gt;</button>
+        </div>
+        <div
+          onchange="handleCheck(event,'right')"
+          class="list list-right"
+        ></div>
+      </div>
+    </div>
+  </body>
   <script src="./script.js"></script>
 </html>
