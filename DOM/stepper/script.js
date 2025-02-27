@@ -9,7 +9,8 @@ const messages = [
 const handleNext = () => {
   const prevState = document.querySelector(`.stage-${currentStage + 1}`);
   prevState.classList.add("done");
-  prevState.innerHTML = "✅";
+  prevState.innerHTML = "✓";
+  prevState.style.color = "white";
   currentStage++;
   document.querySelector(".controls").children[0].disabled = false;
 
@@ -30,10 +31,12 @@ const handleNext = () => {
 };
 
 const handlePrev = () => {
-  const Nextstate = document.querySelector(`.stage-${currentStage + 1}`);
-  if (Nextstate) {
-    Nextstate.classList.remove("done", "in-progress");
-    Nextstate.innerHTML = currentStage + 1;
+  const nextstate = document.querySelector(`.stage-${currentStage + 1}`);
+
+  if (nextstate) {
+    nextstate.classList.remove("done", "in-progress");
+    nextstate.innerHTML = currentStage + 1;
+    nextstate.style.color = "black";
   }
 
   currentStage--;
