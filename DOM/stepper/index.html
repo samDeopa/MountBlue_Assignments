@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Stepper</h1>
+      <hr />
+      <div class="status">
+        <div class="progress-bar"></div>
+        <div class="placeholder-bar"></div>
+        <div class="stage">
+          <div class="circle stage-1 in-progress">1</div>
+          <p>Contact Details</p>
+        </div>
+        <div class="stage">
+          <div class="circle stage-2">2</div>
+          <p>Shipping Address</p>
+        </div>
+        <div class="stage">
+          <div class="circle stage-3">3</div>
+          <p>Payment</p>
+        </div>
+        <div class="stage">
+          <div class="circle stage-4">4</div>
+          <p>Delivered</p>
+        </div>
+      </div>
+      <p class="message">Add contact details for further communication.</p>
+      <div class="controls">
+        <button aria-readonly="true" onclick="handlePrev()" disabled>
+          Prev
+        </button>
+        <button onclick="handleNext()">Next</button>
+      </div>
+    </div>
+  </body>
+  <script src="./script.js"></script>
+</html>
