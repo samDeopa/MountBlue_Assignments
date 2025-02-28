@@ -50,6 +50,7 @@ const addTodo = (e) => {
   tasks.unshift({
     id: Math.floor(Math.random() * 10000),
     title: e.target[0].value,
+    done: false,
   });
   e.target[0].value = "";
   renderTodos();
@@ -89,7 +90,15 @@ const handleEditSubmit = (e) => {
     editTodo(currentEditId, e.target[0].value);
   }
 };
-
+const handleCheck = (event) => {
+  const taskId = event.target.parentNode.id;
+  let index = tasks.findIndex((task) => task.id == taskId);
+  if (event.target.checked) {
+    tasks[index].done = true;
+  } else {
+    tasks[index].done = false;
+  }
+};
 const renderTodos = () => {
   todoList.innerHTML = "";
   tasks.forEach((task) => {
