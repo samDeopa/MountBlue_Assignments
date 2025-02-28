@@ -13,7 +13,7 @@
 }
 .container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   border: 1px solid black;
   margin: 50px;
   min-height: 300px;
@@ -23,7 +23,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 50px;
-  min-width: 290px;
+  min-width: 326px;
 }
 .controller {
   display: flex;
