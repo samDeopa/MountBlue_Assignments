@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <title>Multi-step form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <link href="./src/output.css" rel="stylesheet" />
+  </head>
+  <body class="h-[100vh]">
+    <div
+      class="continer bg-[#EFF5FF] h-[100%] flex justify-center items-center"
+    >
+      <div class="h-[80%] w-[70%] form bg-white rounded-xl shadow-xl flex p-3">
+        <div
+          class="hero-img h-[100%] bg-no-repeat bg-cover w-[30%] bg-center rounded-xl flex p-10 flex-col items-start gap-[30px]"
+        >
+          <div class="flex justify-center items-center gap-[20px]">
+            <div
+              class="border-1 border-white rounded-full h-8 w-8 flex items-center justify-center text-white"
+            >
+              1
+            </div>
+            <div>
+              <p class="text-sm font-light text-[#d6d9e6]">STEP 1</p>
+              <p class="text-white text-base font-bold">YOUR INFO</p>
+            </div>
+          </div>
+          <div class="flex justify-center items-center gap-[20px]">
+            <div
+              class="border-1 border-white rounded-full h-8 w-8 flex items-center justify-center text-white"
+            >
+              2
+            </div>
+            <div>
+              <p class="text-sm font-light text-[#d6d9e6]">STEP 2</p>
+              <p class="text-white text-base font-bold">SELECT PLAN</p>
+            </div>
+          </div>
+          <div class="flex justify-center items-center gap-[20px]">
+            <div
+              class="border-1 border-white rounded-full h-8 w-8 flex items-center justify-center text-white"
+            >
+              3
+            </div>
+            <div>
+              <p class="text-sm font-light text-[#d6d9e6]">STEP 3</p>
+              <p class="text-white text-base font-bold">ADD-ONS</p>
+            </div>
+          </div>
+          <div class="flex justify-center items-center gap-[20px]">
+            <div
+              class="border-1 border-white rounded-full h-8 w-8 flex items-center justify-center text-white"
+            >
+              4
+            </div>
+            <div>
+              <p class="text-sm font-light text-[#d6d9e6]">STEP 4</p>
+              <p class="text-white text-base font-bold">SUMMARY</p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="main-content w-[70%] flex flex-col items-center justify-around"
+        ></div>
+      </div>
+    </div>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
+
+<!-- STEP 1 -->
+<!-- <div class="flex flex-col gap-[30px] w-[70%]">
+  <div class="">
+    <h1 class="font-bold text-[30px] text-[#02295a]">
+      Personal info
+    </h1>
+    <p class="text-[#9699ab] font-200 text-[15px]">
+      Please provide your name, email address, and phone number.
+    </p>
+  </div>
+
+  <div class="flex flex-col text-[]">
+    <label for="" class="text-[#02295a]">Name</label>
+    <input
+      type="text"
+      class="p-2 border-1 rounded border-[#d6d9e6]]"
+      placeholder="eg. Sameer Chand"
+    />
+  </div>
+  <div class="flex flex-col">
+    <label for="" class="text-[#02295a]">Email Address</label>
+    <input
+      type="text"
+      class="p-2 border-1 rounded border-[#d6d9e6]"
+      placeholder="eg. minion@gmail.com"
+    />
+  </div>
+
+  <div class="flex flex-col">
+    <label for="" class="text-[#02295a]">Phone Number</label>
+    <input
+      type="text"
+      class="p-2 border-1 rounded border-[#d6d9e6]"
+      placeholder="eg. +91 7456858123"
+    />
+  </div>
+</div> -->
+
+<!-- step 2 -->
+
+<!-- <div
+          class="main-content w-[70%] flex flex-col items-center justify-around"
+        >
+          <div class="flex flex-col gap-[30px] w-[70%]">
+            <div>
+              <h1 class="font-bold text-[30px] text-[#02295a]">
+                Select your plan
+              </h1>
+              <p class="text-[#9699ab] font-200 text-[15px]">
+                You have the option of monthly or yearly billing.
+              </p>
+            </div>
+            <div class="flex flex-col gap-[40px]">
+              <div class="flex justify-between">
+                <div
+                  class="h-[160px] w-[130px] border-1 border-[#d6d9e6] rounded-xl p-[15px] flex flex-col items-start justify-between"
+                >
+                  <img
+                    src="./assets/images/icon-arcade.svg"
+                    alt=""
+                    class="rounded-full h-[40px]"
+                  />
+                  <div class="text-[10px]">
+                    <p class="text-[#02295a] font-bold text-[14px]">Arcade</p>
+                    <p class="text-[#d6d9e6] text-[12px]">$90/yr</p>
+                    <p class="text-[#02295a]">2 months free</p>
+                  </div>
+                </div>
+                <div
+                  class="h-[160px] w-[130px] border-1 border-[#d6d9e6] rounded-xl p-[15px] flex flex-col items-start justify-between"
+                >
+                  <img
+                    src="./assets/images/icon-advanced.svg"
+                    alt=""
+                    class="rounded-full h-[40px]"
+                  />
+                  <div class="text-[10px]">
+                    <p class="text-[#02295a] font-bold text-[14px]">Advanced</p>
+                    <p class="text-[#d6d9e6] text-[12px]">$120/yr</p>
+                    <p class="text-[#02295a]">2 months free</p>
+                  </div>
+                </div>
+                <div
+                  class="h-[160px] w-[130px] border-1 border-[#d6d9e6] rounded-xl p-[15px] flex flex-col items-start justify-between"
+                >
+                  <img
+                    src="./assets/images/icon-pro.svg"
+                    alt=""
+                    class="rounded-full h-[40px]"
+                  />
+                  <div class="text-[10px]">
+                    <p class="text-[#02295a] font-bold text-[14px]">Pro</p>
+                    <p class="text-[#d6d9e6] text-[12px]">$150/yr</p>
+                    <p class="text-[#02295a]">2 months free</p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="toggle self-center w-[100%] flex justify-center bg-[#EFF5FF] p-3 rounded-xl"
+              >
+                <p class="light-text">Annually</p>
+                <label class="slider">
+                  <input type="checkbox" />
+                  <div class="circle"></div>
+                  <div class></div>
+                </label>
+
+                <p class="light-text">Monthly</p>
+              </div>
+            </div>
+          </div>
+          <div class="w-[70%] flex justify-between">
+            <button class="text-[#d6d9e6] px-5 h-[40px] rounded">
+              Go Back
+            </button>
+            <button class="bg-[#02295a] text-white px-5 h-[40px] rounded">
+              Next Step
+            </button>
+          </div>
+        </div> -->
+
+<!-- Step 3 -->
+
+<!-- 
+        <div class="flex flex-col gap-[30px] w-[70%]">
+          <div>
+            <h1 class="font-bold text-[30px] text-[#02295a]">Pick add-ons</h1>
+            <p class="text-[#9699ab] font-200 text-[15px]">
+              Add-ons help enhance your gaming expirence.
+            </p>
+          </div>
+          <div class="flex flex-col gap-[40px]">
+            <div class="flex flex-col gap-[15px]">
+              <label
+                for="online-sevice"
+                class="flex justify-between p-4 border-1 rounded-xl border-[#d6d9e6] items-center hover:border-[#473dff]"
+              >
+                <span class="flex gap-5">
+                  <input type="checkbox" id="online-sevice" />
+                  <span>
+                    <p class="text-[#02295a] font-bold">Online Services</p>
+                    <p class="text-[#9699ab] font-200 text-[12px]">
+                      Access to multiplayer games
+                    </p>
+                  </span>
+                </span>
+                <p class="text-[#473dff] text-[13px]">+$10/mo</p>
+              </label>
+              <label
+                for="storage"
+                class="flex justify-between p-4 border-1 rounded-xl border-[#d6d9e6] items-center hover:border-[#473dff]"
+              >
+                <span class="flex gap-5">
+                  <input type="checkbox" id="storage" />
+                  <span>
+                    <p class="text-[#02295a] font-bold">Larger Storage</p>
+                    <p class="text-[#9699ab] font-200 text-[12px]">
+                      Extra 1TB of cloud save
+                    </p>
+                  </span>
+                </span>
+                <p class="text-[#473dff] text-[13px]">+$20/mo</p>
+              </label>
+              <label
+                for="custom-profile"
+                class="flex justify-between p-4 border-1 rounded-xl border-[#d6d9e6] items-center hover:border-[#473dff]"
+              >
+                <span class="flex gap-5">
+                  <input type="checkbox" id="custom-profile" />
+                  <span>
+                    <p class="text-[#02295a] font-bold">
+                      Customizable profile
+                    </p>
+                    <p class="text-[#9699ab] font-200 text-[12px]">
+                      Custom theme on your profile
+                    </p>
+                  </span>
+                </span>
+                <p class="text-[#473dff] text-[13px]">+$20/mo</p>
+              </label>
+            </div>
+          </div>
+        </div> -->
+
+<!-- step 4 -->
+
+<!-- <div class="flex flex-col gap-[30px] w-[70%]">
+          <div>
+            <h1 class="font-bold text-[30px] text-[#02295a]">Finishing Up</h1>
+            <p class="text-[#9699ab] font-200 text-[15px]">
+              Double check everything looks OK before confirming.
+            </p>
+          </div>
+          <div class="flex flex-col gap-[40px]">
+            <div>
+              <div class="flex flex-col bg-[#EFF5FF] rounded-xl p-5 gap-4">
+                <div
+                  class="flex justify-between text-[#02295a] font-bold items-center"
+                >
+                  <div>
+                    <p>Arcade(Yearly)</p>
+                    <a
+                      class="text-[#9699ab] font-200 font-normal text-[14px] underline"
+                      href="www.google.com"
+                    >
+                      Change
+                    </a>
+                  </div>
+                  <p>$90/yr</p>
+                </div>
+                <hr />
+                <div class="flex flex-col gap-4">
+                  <div class="flex justify-between">
+                    <p
+                      class="text-[#9699ab] font-200 font-normal text-[14px]"
+                    >
+                      Online service
+                    </p>
+                    <p class="text-[#02295a]">+$10/yr</p>
+                  </div>
+                  <div class="flex justify-between">
+                    <p
+                      class="text-[#9699ab] font-200 font-normal text-[14px]"
+                    >
+                      Larger Storage
+                    </p>
+                    <p class="text-[#02295a]">+$20/yr</p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex justify-between p-5">
+                <p class="text-[#9699ab] font-200 font-normal text-[14px]">
+                  Total(per year)
+                </p>
+                <p class="text-[#473dff] font-bold text-[20px]">+$12/yr</p>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+<!-- Step 5 -->
+
+<!-- <div class="flex flex-col gap-[30px] w-[70%]">
+          <img
+            src="./assets/images/icon-thank-you.svg"
+            alt="Tick Mark"
+            class="h-[100px]"
+          />
+          <div class="flex flex-col items-center gap-5">
+            <h1 class="font-bold text-[30px] text-[#02295a]">Thank you!</h1>
+            <p class="text-[#9699ab] font-200 text-[15px] text-center">
+              Thanks for confirming your subscription! We hope you have fun
+              using our platform. If you ever need support, please feel free
+              to email us at support@loremgaming.com.
+            </p>
+          </div>
+        </div> -->
+
+<!-- 
+        <div class="w-[70%] flex justify-between">
+          <button class="text-[#d6d9e6] px-5 h-[40px] rounded">
+            Go Back
+          </button>
+          <button class="bg-[#02295a] text-white px-5 h-[40px] rounded">
+            Next Step
+          </button>
+          </div> -->
