@@ -57,11 +57,18 @@ const nextStep = () => {
     document.getElementById(`step-${state.step + 1}`).classList.add("hidden");
 
     if (state.step < 5) {
+      document
+        .querySelector(`.circle-step-${state.step + 1}`)
+        .classList.remove("selected-circle");
       state.step++;
+      if (state.step < 4) {
+        document
+          .querySelector(`.circle-step-${state.step + 1}`)
+          .classList.add("selected-circle");
+      }
       render();
     }
   } catch (err) {
-    alert(err);
     console.log(err);
   }
 };
@@ -69,15 +76,72 @@ const nextStep = () => {
 const prevStep = () => {
   document.getElementById(`step-${state.step + 1}`).classList.add("hidden");
   if (state.step > 0) {
+    document
+      .querySelector(`.circle-step-${state.step + 1}`)
+      .classList.remove("selected-circle");
     state.step--;
+    if (state.step < 4) {
+      document
+        .querySelector(`.circle-step-${state.step + 1}`)
+        .classList.add("selected-circle");
+    }
     render();
   }
 };
 
 const validatePersonalInfo = () => {
+  const nameWarning = document.querySelector(".warning-name");
+  const emailWarning = document.querySelector(".warning-email");
+  const phoneWarning = document.querySelector(".warning-phone");
   const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const phone = document.getElementById("phone").value;
+  let hasError = false;
+  const regExEmail =
+    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+  if (name.length < 3) {
+    hasError = true;
+    nameWarning.innerText = "Minimum 3 characters required";
+  }
+  if (phone.length < 3) {
+    hasError = true;
+    phoneWarning.innerText = "Minimum 3 characters required";
+  }
+
+  if (!email.toLowerCase().match(regExEmail)) {
+    hasError = true;
+    emailWarning.innerText = "Invalid mail address";
+  }
+  if (isNaN(phone)) {
+    hasError = true;
+    phoneWarning.innerText = "Invalid character in phone number";
+  }
+
+  if (name.length === 0) {
+    hasError = true;
+    nameWarning.innerText = "This field is Required";
+  } else if (name.length >= 3) {
+    nameWarning.innerText = "";
+  }
+  if (email.length === 0) {
+    hasError = true;
+    emailWarning.innerText = "This field is Required";
+  } else if (email.toLowerCase().match(regExEmail)) {
+    emailWarning.innerText = "";
+  }
+  if (phone.length === 0) {
+    hasError = true;
+    phoneWarning.innerText = "This field is Required";
+  } else {
+    if (!isNaN(phone) && phone.length > 2) {
+      phoneWarning.innerText = "";
+    }
+  }
+  if (hasError) {
+    throw new Error("Invalid Inputs");
+  }
+
   state.name = name;
   state.email = email;
   state.phone = phone;
@@ -184,14 +248,19 @@ const renderCheckoutPrices = () => {
   document.querySelector(".checkout-plan-price").innerText = `$${planPrice}/${
     state.monthlyPlans ? "mo" : "yr"
   }`;
+  if (!state.selectedAddOns.length) {
+    document.querySelector(".addon-divide").classList.add("hidden");
+  } else if (state.selectedAddOns.length) {
+    document.querySelector(".addon-divide").classList.remove("hidden");
+  }
 
   const addons = document.querySelector(".checkout-addons");
   addons.innerHTML = "";
+
   state.selectedAddOns.forEach((item) => {
     const div = document.createElement("div");
     div.classList.add("flex");
     div.classList.add("justify-between");
-    console.log(state.addOns[state.monthlyPlans ? "monthly" : "yearly"]);
 
     const price = state.addOns[
       state.monthlyPlans ? "monthly" : "yearly"
@@ -208,12 +277,16 @@ const renderCheckoutPrices = () => {
       state.monthlyPlans ? "mo" : "yr"
     }</p>`;
     addons.append(div);
-
-    const totalPriceElement = document.querySelector(".total-price");
-    totalPriceElement.innerText = `+$${total}/${
-      state.monthlyPlans ? "mo" : "yr"
-    }`;
   });
+  const totalPriceElement = document.querySelector(".total-price");
+  totalPriceElement.innerText = `+$${total}/${
+    state.monthlyPlans ? "mo" : "yr"
+  }`;
+};
+
+const changePricingPlan = () => {
+  prevStep();
+  prevStep();
 };
 // Initial Render
 render();
@@ -224,6 +297,8 @@ window.prevStep = prevStep;
 
 window.handlePlansChange = handlePlansChange;
 window.handleAddOnChange = handleAddOnChange;
+window.changePricingPlan = changePricingPlan;
+
 {
   /* <div class="flex justify-between">
   <p class="text-[#9699ab] font-200 font-normal text-[14px]">Larger Storage</p>

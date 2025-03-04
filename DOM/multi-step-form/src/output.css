@@ -7,6 +7,7 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-red-500: oklch(0.637 0.237 25.331);
+    --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
     --text-sm: 0.875rem;
@@ -18,6 +19,7 @@
     --font-weight-light: 300;
     --font-weight-normal: 400;
     --font-weight-bold: 700;
+    --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
     --ease-in: cubic-bezier(0.4, 0, 1, 1);
     --ease-out: cubic-bezier(0, 0, 0.2, 1);
@@ -444,9 +446,6 @@
   .aspect-square {
     aspect-ratio: 1 / 1;
   }
-  .h-0 {
-    height: calc(var(--spacing) * 0);
-  }
   .h-8 {
     height: calc(var(--spacing) * 8);
   }
@@ -468,9 +467,6 @@
   .h-\[100vh\] {
     height: 100vh;
   }
-  .h-\[160px\] {
-    height: 160px;
-  }
   .h-screen {
     height: 100vh;
   }
@@ -482,9 +478,6 @@
   }
   .min-h-screen {
     min-height: 100vh;
-  }
-  .w-0 {
-    width: calc(var(--spacing) * 0);
   }
   .w-1\/2 {
     width: calc(1/2 * 100%);
@@ -1056,6 +1049,10 @@
     border-bottom-right-radius: 0.25rem;
     border-bottom-left-radius: 0.25rem;
   }
+  .rounded-b-lg {
+    border-bottom-right-radius: var(--radius-lg);
+    border-bottom-left-radius: var(--radius-lg);
+  }
   .rounded-br {
     border-bottom-right-radius: 0.25rem;
   }
@@ -1137,9 +1134,6 @@
   }
   .bg-\(color\:--my-color\) {
     background-color: var(--my-color);
-  }
-  .bg-\[\#\#473dff\] {
-    background-color: ##473dff;
   }
   .bg-\[\#0088cc\] {
     background-color: #0088cc;
@@ -1355,9 +1349,6 @@
   .p-15 {
     padding: calc(var(--spacing) * 15);
   }
-  .p-52 {
-    padding: calc(var(--spacing) * 52);
-  }
   .p-\[15px\] {
     padding: 15px;
   }
@@ -1442,6 +1433,10 @@
   .leading-none {
     --tw-leading: 1;
     line-height: 1;
+  }
+  .font-\[12px\] {
+    --tw-font-weight: 12px;
+    font-weight: 12px;
   }
   .font-bold {
     --tw-font-weight: var(--font-weight-bold);
@@ -1539,6 +1534,12 @@
   }
   .text-\[\#d6d9e6\] {
     color: #d6d9e6;
+  }
+  .text-\[red\] {
+    color: red;
+  }
+  .text-black {
+    color: var(--color-black);
   }
   .text-white {
     color: var(--color-white);
@@ -1696,6 +1697,10 @@
   }
   .shadow {
     --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .shadow-md {
+    --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   .shadow-xl {
