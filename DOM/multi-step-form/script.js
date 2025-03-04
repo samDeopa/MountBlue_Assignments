@@ -89,6 +89,8 @@ const prevStep = () => {
   }
 };
 
+let listenersAttached = false;
+
 const validatePersonalInfo = () => {
   const nameWarning = document.querySelector(".warning-name");
   const emailWarning = document.querySelector(".warning-email");
@@ -139,6 +141,19 @@ const validatePersonalInfo = () => {
     }
   }
   if (hasError) {
+    if (!listenersAttached) {
+      const inputs = document.querySelectorAll(".user-info");
+      inputs.forEach((input) => {
+        input.addEventListener("keyup", () => {
+          try {
+            validatePersonalInfo();
+          } catch (e) {
+            console.log(e);
+          }
+        });
+      });
+      listenersAttached = true;
+    }
     throw new Error("Invalid Inputs");
   }
 
