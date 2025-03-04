@@ -1,4 +1,8 @@
 const PersonalInfo = `
+<div
+          id="step-1"
+          class="w-[70%] flex flex-col items-center justify-around"
+        >
   <div class="flex flex-col gap-8 w-[70%]">
     <div>
       <h1 class="font-bold text-2xl text-[#02295a]">Personal info</h1>
@@ -28,7 +32,7 @@ const PersonalInfo = `
     <div class="flex flex-col">
       <label class="text-[#02295a]" for="phone">Phone Number</label>
       <input 
-        type="tel" 
+        type="number" 
         id="phone" 
         class="p-2 border rounded border-[#d6d9e6]" 
         placeholder="e.g. +91 7456858123" 
@@ -36,9 +40,10 @@ const PersonalInfo = `
     </div>
   </div>
 
-  <div class="w-[70%] flex justify-between mt-4">
+  <div class="controller w-[70%] flex justify-between mt-4">
     <button class="back-btn text-[#d6d9e6] px-5 h-10 rounded">Go Back</button>
     <button class="next-btn bg-[#02295a] text-white px-5 h-10 rounded">Next Step</button>
+  </div>
   </div>
 `;
 
