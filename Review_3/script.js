@@ -66,20 +66,26 @@ const renderHelper = (id, level, renderedElement) => {
   renderedElement.push(parseInt(id));
   const div = document.createElement("div");
   div.classList.add("comment");
-  div.innerHTML = `<img src="https://xsgames.co/randomusers/avatar.php?g=pixel&rand=${Math.random()}" class="profile"></img>
+  div.innerHTML = `<img src="https://xsgames.co/randomusers/avatar.php?g=pixel&rand=${id}" class="profile"></img>
                     <div>
                         <p >${comments[id].data}</p>
                         <div>
-                            <button onclick="handleEdit(${id})">Reply</button>
-                            <button onclick="handleDelete(${id})">Delete</button>
+                            <button >Reply</button>
+                            <button >Delete</button>
                         </div>
                         <div class="edit hidden">
                             <input placeholder="Reply..." type="text" />
-                            <button onclick="handelNestedAdd(${id})">Add</button>
-                            <button onclick="handleCancel(${id})">cancel</button>
+                            <button>Add</button>
+                            <button>cancel</button>
                         </div>
                     </div>`;
   div.id = id;
+
+  [replyBtn, deleteBtn, addBtn, cancelBtn] = div.querySelectorAll("button");
+  replyBtn.addEventListener("click", () => handleEdit(id));
+  deleteBtn.addEventListener("click", () => handleDelete(id));
+  addBtn.addEventListener("click", () => handelNestedAdd(id));
+  cancelBtn.addEventListener("click", () => handleCancel(id));
   div.style.marginLeft = `${level * 40}px`;
   mainDiv.appendChild(div);
   for (key of comments[id].children) {
