@@ -1,3 +1,47 @@
 .hidden {
   display: none;
 }
+.header {
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 5px #eaeaea;
+}
+.comments {
+  padding: 10px 80px;
+}
+.input-section {
+  padding: 10px 80px;
+}
+.input-section input {
+  padding: 10px;
+}
+.input-section button {
+  padding: 10px;
+}
+
+.comment {
+  display: flex;
+  align-items: center;
+  background-color: #f3f4f6;
+  margin-bottom: 0.5rem;
+  border-radius: 1rem;
+  padding: 0 0.5rem 0.5rem 0.5rem;
+  border-left: 0.5rem solid blue;
+}
+
+.comment img {
+  width: 3.125rem;
+  height: 3.125rem;
+  margin-right: 0.8rem;
+  border-radius: 50%;
+}
+
+.comment_replies {
+  margin-left: 1rem;
+  padding-left: 1rem;
+}
+
+.comment button {
+  border: none;
+  background-color: transparent;
+}

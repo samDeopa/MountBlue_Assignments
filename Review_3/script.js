@@ -33,9 +33,8 @@ const comments = {
   },
   6: {
     data: "Nothing",
-    children: [7],
+    children: [],
   },
-  7: {},
 };
 const mainDiv = document.querySelector(".comments");
 
@@ -48,6 +47,8 @@ const handleAdd = () => {
 };
 
 const render = () => {
+  console.log(comments);
+
   mainDiv.innerHTML = "";
   const renderedElement = [];
   for (id in comments) {
@@ -59,23 +60,27 @@ const renderHelper = (id, level, renderedElement) => {
   if (renderedElement.includes(parseInt(id))) {
     return;
   }
+  if (!comments[id]) {
+    return;
+  }
   renderedElement.push(parseInt(id));
   const div = document.createElement("div");
-  div.innerHTML = `<div class="profile"></div>
+  div.classList.add("comment");
+  div.innerHTML = `<img src="https://xsgames.co/randomusers/avatar.php?g=pixel" class="profile"></img>
                     <div>
-                        <p class="comment">${comments[id].data}</p>
+                        <p >${comments[id].data}</p>
                         <div>
-                            <button onclick="handleEdit(${id})">reply</button>
-                            <button onclick="handleDelete(${id})">delete</button>
+                            <button onclick="handleEdit(${id})">Reply</button>
+                            <button onclick="handleDelete(${id})">Delete</button>
                         </div>
                         <div class="edit hidden">
-                            <input type="text" />
-                            <button onclick="handelNestedAdd(${id})">add</button>
+                            <input placeholder="Reply..." type="text" />
+                            <button onclick="handelNestedAdd(${id})">Add</button>
                             <button onclick="handleCancel(${id})">cancel</button>
                         </div>
                     </div>`;
   div.id = id;
-  div.style.marginLeft = `${level * 10}px`;
+  div.style.marginLeft = `${level * 40}px`;
   mainDiv.appendChild(div);
   for (key of comments[id].children) {
     renderHelper(key, level + 1, renderedElement);
@@ -117,11 +122,13 @@ const handleCancel = (id) => {
 
 const handleDelete = (id) => {
   deleteHelper(id);
-
   render();
 };
 
 const deleteHelper = (id) => {
+  if (!comments[id]) {
+    return;
+  }
   for (child of comments[id].children) {
     deleteHelper(child);
   }
