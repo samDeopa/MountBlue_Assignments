@@ -1,0 +1,32 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stop-watch {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  background-color: antiquewhite;
+  padding: 80px;
+  border-radius: 100%;
+  transition: border 1s ease-in;
+}
+button {
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.border {
+  border: 2px solid black;
+}

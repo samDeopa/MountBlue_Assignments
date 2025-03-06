@@ -66,7 +66,7 @@ const renderHelper = (id, level, renderedElement) => {
   renderedElement.push(parseInt(id));
   const div = document.createElement("div");
   div.classList.add("comment");
-  div.innerHTML = `<img src="https://xsgames.co/randomusers/avatar.php?g=pixel" class="profile"></img>
+  div.innerHTML = `<img src="https://xsgames.co/randomusers/avatar.php?g=pixel&rand=${Math.random()}" class="profile"></img>
                     <div>
                         <p >${comments[id].data}</p>
                         <div>
