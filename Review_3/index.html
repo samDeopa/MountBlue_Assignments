@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div>
+      <input type="text" class="input" />
+      <button onclick="handleAdd()">add</button>
+    </div>
+    <div class="comments">
+      <div id="1">
+        <div class="profile"></div>
+        <div>
+          <p class="comment">Hello this is sammer chnd</p>
+          <div>
+            <button onclick="handleEdit(1)">reply</button>
+            <button onclick="handleDelete()">delete</button>
+          </div>
+          <div class="edit hidden">
+            <input type="text" />
+            <button onclick="handelNestedAdd(1)">add</button>
+            <button onclick="handleCancel(1)">cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
