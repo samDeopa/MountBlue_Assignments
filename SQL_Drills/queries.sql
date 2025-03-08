@@ -121,7 +121,7 @@ VALUES
 -- 1. List all organization names.
   select name as "Organization Name" from organizations;
 -- 2. List all channel names.
-  select name from channels;
+  select name as "Channel Name" from channels;
 -- 3. List all channels in a specific organization by organization name.
   select o.name as "Organization Name" , c.name as "Channel Name"  from organizations o left join channels c on o.id = c.organization_id ;
 -- 4. List all messages in a specific channel by channel name (#general) in order of post_time, descending.
