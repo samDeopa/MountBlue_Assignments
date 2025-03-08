@@ -1,11 +1,3 @@
--- Drop tables in reverse order of dependencies
-DROP TABLE IF EXISTS organization_members;
-DROP TABLE IF EXISTS channel_members;
-DROP TABLE IF EXISTS messages;
-DROP TABLE IF EXISTS channels;
-DROP TABLE IF EXISTS organizations;
-DROP TABLE IF EXISTS users;
-
 -- Create organizations table
 CREATE TABLE organizations (
   id INT PRIMARY KEY,
@@ -118,16 +110,24 @@ VALUES
   (28, 3, 2, NOW() + INTERVAL 18 SECOND, 'Chris: Sharing insights in #random.'),
   (29, 1, 1, NOW() + INTERVAL 19 SECOND, 'Alice: Wrapping up discussion in #general.'),
   (30, 2, 2, NOW() + INTERVAL 20 SECOND, 'Bob: Summarizing points in #random.');
+  
+  select * from channels;
+  select * from organizations;
+  select * from users;
+  select * from  organization_members;
+  select * from channel_members;
+  select * from messages;
+  
 -- 1. List all organization names.
-  select name from channels;
+  select name as "Organization Name" from organizations;
 -- 2. List all channel names.
   select name from channels;
 -- 3. List all channels in a specific organization by organization name.
-  select o.name as Organization_Name , c.name as Channel_Name  from organizations o left join channels c on o.id = c.organization_id ;
+  select o.name as "Organization Name" , c.name as "Channel Name"  from organizations o left join channels c on o.id = c.organization_id ;
 -- 4. List all messages in a specific channel by channel name (#general) in order of post_time, descending.
-  select m.content, c.name as channel, m.post_time from messages m left  join channels c on m.channel_id = c.id where c.name = "#general" order by post_time desc;
+  select m.content, c.name as Channel, m.post_time from messages m left  join channels c on m.channel_id = c.id where c.name = "#general" order by post_time desc;
 -- 5. List all channels to which user Alice belongs.
-  select c.name as channel_list from users u left join channel_members cm on u.id = cm.user_id left join channels c on  c.id = cm.channel_id where u.name = "Alice" ; 
+  select c.name as "Channel List" from users u left join channel_members cm on u.id = cm.user_id left join channels c on  c.id = cm.channel_id where u.name = "Alice" ; 
 -- 6. List all users that belong to channel #general.
   select u.name  from channel_members cm left join users u on u.id = cm.user_id left join channels c on c.id = cm.channel_id where c.name = "#general";
 -- 7. List all messages in all channels by user Alice.
@@ -135,9 +135,11 @@ VALUES
 -- 8. List all messages in #random by user Bob.
   select m.id , m.content, m.post_time from messages m  left join users u on u.id = m.user_id left join channels c on m.channel_id = c.id where u.name = "Bob" and c.name = "#random";
 -- 9. List the count of messages across all channels per user (with the user's name column titled "User Name" and the count column titled "Message Count", and user names in reverse alphabetical order).
-  select u.name , count(m.content) from messages m  left join users u on m.user_id = u.id group by m.user_id;
+  select u.name as "User Name", count(m.content) as "Message Count" from messages m  left join users u on m.user_id = u.id group by m.user_id;
 -- 10. [Stretch!] List the count of messages per user per channel.
-  select c.name , count(m.content) from messages m  left join channels c on m.channel_id = c.id group by m.channel_id;
+  select c.name as "Channel Name" , count(m.content) as "Message Count" from messages m  left join channels c on m.channel_id = c.id group by m.channel_id;
 
 --What SQL keywords or concept would you use if you wanted to automatically delete all messages by a user if that user were deleted from the user table?
 -- ON DELETE CASCADE
+
+

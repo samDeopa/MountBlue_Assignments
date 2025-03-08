@@ -201,49 +201,47 @@ Ref: organizations.id < channels.organization_id
 
 ## SQL Queries
 
-Below are SQL queries for various operations on the database:
-
 1. **List all organization names:**
 
    ```sql
-   SELECT name FROM organizations;
+   SELECT name AS "Organization Name" FROM organizations;
    ```
 
 2. **List all channel names:**
 
    ```sql
-   SELECT name FROM channels;
+   SELECT name AS "Channel Name" FROM channels;
    ```
 
-3. **List all channels in a specific organization by organization name:**
+3. **List all channels in each organization:**
 
    ```sql
-   SELECT o.name AS Organization_Name, c.name AS Channel_Name
+   SELECT o.name AS "Organization Name", c.name AS "Channel Name"
    FROM organizations o
    LEFT JOIN channels c ON o.id = c.organization_id;
    ```
 
-4. **List all messages in a specific channel by channel name (`#general`) in order of `post_time`, descending:**
+4. **List all messages in the `#general` channel, ordered by `post_time` descending:**
 
    ```sql
-   SELECT m.content, c.name AS channel, m.post_time
+   SELECT m.content, c.name AS "Channel", m.post_time
    FROM messages m
    LEFT JOIN channels c ON m.channel_id = c.id
    WHERE c.name = '#general'
    ORDER BY m.post_time DESC;
    ```
 
-5. **List all channels to which user Alice belongs:**
+5. **List all channels that user 'Alice' belongs to:**
 
    ```sql
-   SELECT c.name AS channel_list
+   SELECT c.name AS "Channel List"
    FROM users u
    LEFT JOIN channel_members cm ON u.id = cm.user_id
    LEFT JOIN channels c ON c.id = cm.channel_id
    WHERE u.name = 'Alice';
    ```
 
-6. **List all users that belong to channel `#general`:**
+6. **List all users that belong to the `#general` channel:**
 
    ```sql
    SELECT u.name
@@ -253,7 +251,7 @@ Below are SQL queries for various operations on the database:
    WHERE c.name = '#general';
    ```
 
-7. **List all messages in all channels by user Alice:**
+7. **List all messages across all channels by user 'Alice':**
 
    ```sql
    SELECT m.id, m.content, m.channel_id, m.post_time
@@ -262,7 +260,7 @@ Below are SQL queries for various operations on the database:
    WHERE u.name = 'Alice';
    ```
 
-8. **List all messages in `#random` by user Bob:**
+8. **List all messages in the `#random` channel by user 'Bob':**
 
    ```sql
    SELECT m.id, m.content, m.post_time
@@ -272,7 +270,7 @@ Below are SQL queries for various operations on the database:
    WHERE u.name = 'Bob' AND c.name = '#random';
    ```
 
-9. **List the count of messages across all channels per user (with the user's name column titled "User Name" and the count column titled "Message Count", and user names in reverse alphabetical order):**
+9. **Count of messages across all channels per user, ordered by user names in reverse alphabetical order:**
 
    ```sql
    SELECT u.name AS "User Name", COUNT(m.content) AS "Message Count"
@@ -282,10 +280,10 @@ Below are SQL queries for various operations on the database:
    ORDER BY u.name DESC;
    ```
 
-10. **List the count of messages per user per channel:**
+10. **[Stretch] Count of messages per user per channel:**
 
     ```sql
-    SELECT u.name AS "User Name", c.name AS "Channel Name", COUNT(m.id) AS "Message Count"
+    SELECT u.name AS "User Name", c.name AS "Channel Name", COUNT(m.content) AS "Message Count"
     FROM messages m
     LEFT JOIN users u ON m.user_id = u.id
     LEFT JOIN channels c ON m.channel_id = c.id
@@ -305,3 +303,53 @@ ON DELETE CASCADE;
 ```
 
 This ensures that when a user is deleted, all their associated messages are also removed from the `messages` table.
+
+# Messaging Platform Database Documentation
+
+This document provides an overview of the messaging platform's database schema, including table structures, relationships, and sample SQL queries for common operations. An accompanying entity-relationship diagram (`ERDiagram.png`) visually represents the schema.
+
+## Table Structures
+
+### 1. `organizations`
+
+- **id**: `INT PRIMARY KEY` – Unique identifier for each organization.
+- **name**: `VARCHAR(255) NOT NULL` – Name of the organization.
+
+### 2. `channels`
+
+- **id**: `INT PRIMARY KEY` – Unique identifier for each channel.
+- **name**: `VARCHAR(255) NOT NULL` – Name of the channel.
+- **organization_id**: `INT` – Foreign key referencing `organizations(id)`.
+
+### 3. `users`
+
+- **id**: `INT PRIMARY KEY` – Unique identifier for each user.
+- **name**: `VARCHAR(255) NOT NULL` – Name of the user.
+
+### 4. `messages`
+
+- **id**: `INT PRIMARY KEY` – Unique identifier for each message.
+- **user_id**: `INT NOT NULL` – Foreign key referencing `users(id)`.
+- **channel_id**: `INT NOT NULL` – Foreign key referencing `channels(id)`.
+- **post_time**: `DATETIME NOT NULL` – Timestamp of when the message was posted.
+- **content**: `VARCHAR(255)` – Content of the message.
+
+### 5. `channel_members`
+
+- **user_id**: `INT NOT NULL` – Foreign key referencing `users(id)`.
+- **channel_id**: `INT NOT NULL` – Foreign key referencing `channels(id)`.
+- **PRIMARY KEY (user_id, channel_id)** – Composite primary key ensuring a user can join a channel only once.
+
+### 6. `organization_members`
+
+- **user_id**: `INT NOT NULL` – Foreign key referencing `users(id)`.
+- **organization_id**: `INT NOT NULL` – Foreign key referencing `organizations(id)`.
+- **PRIMARY KEY (user_id, organization_id)** – Composite primary key ensuring a user can join an organization only once.
+
+## Relationships
+
+- **Organizations and Channels**: One-to-many relationship. Each organization can have multiple channels.
+- **Users and Organizations**: Many-to-many relationship managed by the `organization_members` table.
+- **Users and Channels**: Many-to-many relationship managed by the `channel_members` table.
+- **Users and Messages**: One-to-many relationship. Each user can post multiple messages.
+- **Channels and Messages**: One-to-many relationship. Each channel can contain multiple messages.
