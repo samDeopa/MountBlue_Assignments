@@ -318,7 +318,7 @@ This document provides an overview of the messaging platform's database schema, 
 
 - **id**: `INT PRIMARY KEY` – Unique identifier for each channel.
 - **name**: `VARCHAR(255) NOT NULL` – Name of the channel.
-- **organization_id**: `INT` – Foreign key referencing `organizations(id)`.
+- **organization_id**: `INT NOT NULL` – Foreign key referencing `organizations(id)`.
 
 ### 3. `users`
 
