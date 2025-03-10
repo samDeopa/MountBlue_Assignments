@@ -130,9 +130,9 @@ VALUES
 -- 8. List all messages in #random by user Bob.
   select m.id , m.content, m.post_time from messages m  left join users u on u.id = m.user_id left join channels c on m.channel_id = c.id where u.name = "Bob" and c.name = "#random";
 -- 9. List the count of messages across all channels per user (with the user's name column titled "User Name" and the count column titled "Message Count", and user names in reverse alphabetical order).
-  select u.name as "User Name", count(m.content) as "Message Count" from messages m  left join users u on m.user_id = u.id group by m.user_id, u.user_id;
+  select u.name as "User Name", count(m.content) as "Message Count" from messages m  left join users u on m.user_id = u.id group by u.id order by u.name desc;
 -- 10. [Stretch!] List the count of messages per user per channel.
-  select c.name as "Channel Name" , count(m.content) as "Message Count" from messages m  left join channels c on m.channel_id = c.id group by m.channel_id;
+  select c.name as "Channel Name" , count(m.content) as "Message Count" from messages m  left join channels c on m.channel_id = c.id group by c.id;;
 
 --What SQL keywords or concept would you use if you wanted to automatically delete all messages by a user if that user were deleted from the user table?
 -- ON DELETE CASCADE
