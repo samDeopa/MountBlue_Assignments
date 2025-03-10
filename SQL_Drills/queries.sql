@@ -1,6 +1,6 @@
 -- Create organizations table
 CREATE TABLE organizations (
-  id INT PRIMARY KEY,
+  id INT PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL
 );
 
@@ -111,12 +111,7 @@ VALUES
   (29, 1, 1, NOW() + INTERVAL 19 SECOND, 'Alice: Wrapping up discussion in #general.'),
   (30, 2, 2, NOW() + INTERVAL 20 SECOND, 'Bob: Summarizing points in #random.');
   
-  select * from channels;
-  select * from organizations;
-  select * from users;
-  select * from  organization_members;
-  select * from channel_members;
-  select * from messages;
+
   
 -- 1. List all organization names.
   select name as "Organization Name" from organizations;
@@ -135,7 +130,7 @@ VALUES
 -- 8. List all messages in #random by user Bob.
   select m.id , m.content, m.post_time from messages m  left join users u on u.id = m.user_id left join channels c on m.channel_id = c.id where u.name = "Bob" and c.name = "#random";
 -- 9. List the count of messages across all channels per user (with the user's name column titled "User Name" and the count column titled "Message Count", and user names in reverse alphabetical order).
-  select u.name as "User Name", count(m.content) as "Message Count" from messages m  left join users u on m.user_id = u.id group by m.user_id;
+  select u.name as "User Name", count(m.content) as "Message Count" from messages m  left join users u on m.user_id = u.id group by m.user_id, u.user_id;
 -- 10. [Stretch!] List the count of messages per user per channel.
   select c.name as "Channel Name" , count(m.content) as "Message Count" from messages m  left join channels c on m.channel_id = c.id group by m.channel_id;
 

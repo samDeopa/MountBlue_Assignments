@@ -276,18 +276,17 @@ Ref: organizations.id < channels.organization_id
    SELECT u.name AS "User Name", COUNT(m.content) AS "Message Count"
    FROM messages m
    LEFT JOIN users u ON m.user_id = u.id
-   GROUP BY u.name
+   GROUP BY u.id
    ORDER BY u.name DESC;
    ```
 
 10. **[Stretch] Count of messages per user per channel:**
 
     ```sql
-    SELECT u.name AS "User Name", c.name AS "Channel Name", COUNT(m.content) AS "Message Count"
+    SELECT c.name AS "Channel Name" , count(m.content) AS "Message Count"
     FROM messages m
-    LEFT JOIN users u ON m.user_id = u.id
     LEFT JOIN channels c ON m.channel_id = c.id
-    GROUP BY u.name, c.name;
+    GROUP BY c.id;
     ```
 
 ## Cascading Deletes
