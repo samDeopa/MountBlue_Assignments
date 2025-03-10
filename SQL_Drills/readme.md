@@ -34,7 +34,7 @@ CREATE TABLE organizations (
 CREATE TABLE channels (
   id INT PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
-  organization_id INT,
+  organization_id INT NOT NULL,
   FOREIGN KEY (organization_id) REFERENCES organizations(id)
 );
 
