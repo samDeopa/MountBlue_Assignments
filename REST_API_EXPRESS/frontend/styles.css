@@ -59,34 +59,29 @@ button {
   align-items: center;
 }
 
-/* Tutorial Title Styling */
 .tutorial-title {
   margin: 0 0 10px 0;
   color: #333;
   font-size: 1.2em;
 }
 
-/* Tutorial Description Styling */
 .tutorial-description {
   margin: 0 0 10px 0;
   color: #666;
   font-size: 1em;
 }
 
-/* Additional text styles for published status and ID */
 .tutorial-published,
 .tutorial-id {
   margin: 0 0 10px 0;
   font-size: 0.9em;
 }
 
-/* Action buttons container */
 .tutorial-actions {
   display: flex;
   gap: 10px;
 }
 
-/* Common button styles */
 .btn {
   padding: 8px 12px;
   border: none;
@@ -95,13 +90,11 @@ button {
   font-size: 0.9em;
 }
 
-/* Edit button styling */
 .btn-edit {
   background-color: #ffc107;
   color: #fff;
 }
 
-/* Delete button styling */
 .btn-delete {
   background-color: #dc3545;
   color: #fff;
