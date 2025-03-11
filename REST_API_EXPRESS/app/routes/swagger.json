@@ -1,0 +1,35 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Public Server API",
+    "version": "1.0.0",
+    "description": "This is a public server API documentation."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local server"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Root Endpoint",
+        "description": "Returns a welcome message for the public server.",
+        "responses": {
+          "200": {
+            "description": "A welcome message.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "This is a public server"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

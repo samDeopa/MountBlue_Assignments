@@ -1,0 +1,63 @@
+{
+  "info": {
+    "_postman_id": "b7f1d0f0-cfe4-431a-8377-2c49595495f7",
+    "name": "Tutorials Api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "11510090"
+  },
+  "item": [
+    {
+      "name": "Get tutorial by id",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/tutorials/:id"
+      }
+    },
+    {
+      "name": "Update tutorial by id",
+      "request": {
+        "method": "PUT",
+        "url": "http://localhost:8080/api/tutorials/:id"
+      }
+    },
+    {
+      "name": "Get all the Tutorials",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/tutorials/"
+      }
+    },
+    {
+      "name": "Delete Tutorial by id",
+      "request": {
+        "method": "DELETE",
+        "url": "http://localhost:8080/api/tutorials/:id"
+      }
+    },
+    {
+      "name": "Delete all tutorials",
+      "request": {
+        "method": "DELETE",
+        "url": "http://localhost:8080/api/tutorials/"
+      }
+    },
+    {
+      "name": "Get all the published Tutorials",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/tutorials/published"
+      }
+    },
+    {
+      "name": "Create a new tutorial",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/tutorials/",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Batman\", \n  \"description\" :\"I am Batman\",\n  \"published\" : false\n}"
+        }
+      }
+    }
+  ]
+}
