@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tutorials API Frontend</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <h1>Tutorials API Frontend</h1>
+
+    <h4>Create or Edit a Tutorial</h4>
+    <form id="createForm">
+      <input type="hidden" id="tutorialId" />
+      <label for="title">Title:</label><br />
+      <input type="text" id="title" required /><br />
+      <label for="description">Description:</label><br />
+      <textarea id="description" required></textarea><br />
+      <label for="published">Published:</label>
+      <input type="checkbox" id="published" /><br />
+      <button type="submit">Save Tutorial</button>
+    </form>
+
+    <hr />
+
+    <h2>All Tutorials</h2>
+    <button id="fetchTutorials">Fetch All Tutorials</button>
+    <div id="tutorialsList"></div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
