@@ -11,6 +11,8 @@ import {
 
 const router = express.Router();
 
+// throw new Error("Random error");
+
 // Create a new Tutorial
 router.post("/", createTutorials);
 

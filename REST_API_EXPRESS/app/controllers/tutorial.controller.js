@@ -7,9 +7,8 @@ import {
   removeTutorial,
   removeAllTutorial,
 } from "../models/tutorial.models.js";
+import { tutorialSchema } from "../schema/zodSchema.js";
 const createTutorials = (req, res) => {
-  console.log(req.body);
-
   if (!req.body) {
     res.status(400).send({
       message: "Content can not be empty!",
@@ -20,13 +19,14 @@ const createTutorials = (req, res) => {
     description: req.body.description,
     published: req.body.published || false,
   };
+  validateTutorial(tutorial, res);
   createTutorial(tutorial, (err, data) => {
-    if (err)
+    if (err) {
       res.status(500).send({
         message:
           err.message || "Some error occurred while creating the Tutorial.",
       });
-    else res.send(data);
+    } else res.send(data);
   });
 };
 
@@ -57,6 +57,9 @@ const findAllPublishedTutorials = (req, res) => {
 };
 
 const findOneTutorial = (req, res) => {
+  const id = req.params.id;
+
+  validateId(id, res);
   findTutorialById(req.params.id, (err, data) => {
     if (err) {
       res.status(500).send({
@@ -74,7 +77,10 @@ const updateTutorial = (req, res) => {
     description: req.body.description,
     published: req.body.published || false,
   };
-  updateTutorialById(req.params.id, tutorial, (err, data) => {
+  const id = req.params.id;
+  validateTutorial(tutorial, res);
+  validateId(id, res);
+  updateTutorialById(id, tutorial, (err, data) => {
     if (err) {
       res.status(500).send({
         message:
@@ -87,6 +93,7 @@ const updateTutorial = (req, res) => {
 };
 const deleteTutorial = (req, res) => {
   const id = req.params.id;
+  validateId(id, res);
   removeTutorial(id, (err, data) => {
     if (err) {
       res.status(500).send({
@@ -111,6 +118,21 @@ const deleteAllTutorials = (req, res) => {
   });
 };
 
+const validateTutorial = (tutorial, res) => {
+  const { success } = tutorialSchema.safeParse(tutorial);
+  if (!success) {
+    res.status(500).send({
+      message: "Invalid data for the tutorial object",
+    });
+  }
+};
+const validateId = (id, res) => {
+  if (!id || isNaN(id)) {
+    res.status(500).send({
+      message: "Invalid ID for the tutorial object",
+    });
+  }
+};
 export {
   createTutorials,
   findAllTutorials,

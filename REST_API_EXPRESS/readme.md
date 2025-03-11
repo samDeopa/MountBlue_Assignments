@@ -58,6 +58,24 @@ Ensure you have the following installed:
 | DELETE | `/`          | Delete all tutorials        |
 | GET    | `/published` | Get all published tutorials |
 
+## Validation
+
+This project uses [Zod](https://github.com/colinhacks/zod) for request data validation. In the API controllers, incoming request data is validated against predefined Zod schemas before processing. This ensures that the data conforms to the expected format and helps catch invalid input early.
+
+For example, the tutorial data is validated using the following schema:
+
+```javascript
+import { z } from "zod";
+
+const tutorialSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  published: z.boolean().optional(), // published is optional
+});
+
+export default tutorialSchema;
+```
+
 ## Database Setup
 
 The API uses an SQLite database named `tutorials.db`. If it does not exist, it will be created automatically.

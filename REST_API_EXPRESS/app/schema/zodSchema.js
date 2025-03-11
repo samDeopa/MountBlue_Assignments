@@ -1,18 +1,14 @@
-const zod = require("zod");
+import zod from "zod";
 
 const tutorialSchema = zod.object({
   title: zod.string(),
   description: zod.string(),
   published: zod.boolean(),
 });
-const signinSchema = zod.object({
-  userName: zod.string().email(),
-  password: zod.string(),
-});
 
 const updateSchema = zod.object({
-  password: zod.string().optional(),
-  firstName: zod.string().optional(),
-  lastName: zod.string().optional(),
+  title: zod.string().optional(),
+  description: zod.string().optional(),
+  published: zod.boolean().optional(),
 });
-module.exports = { userSchema, updateSchema, signinSchema };
+export { tutorialSchema, updateSchema };
