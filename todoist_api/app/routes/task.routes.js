@@ -2,6 +2,7 @@ import express from "express";
 import {
   createTask,
   deleteTask,
+  filterTasks,
   findAllTasks,
   findOneTask,
   updateTask,
@@ -9,6 +10,9 @@ import {
 
 const router = express.Router();
 
+router.get("/filter", (req, res) => {
+  filterTasks(req, res);
+});
 router.get("/", (req, res) => {
   findAllTasks(req, res);
 });

@@ -11,6 +11,7 @@ export const createProject = (req, res) => {
     name: req.body.name,
     color: req.body.color,
     is_favorite: req.body.is_favorite || false,
+    user_id: req.body.number || null,
   };
 
   validateProject(project, res);
@@ -69,6 +70,7 @@ export const updateProject = (req, res) => {
           : data[0].is_favorite == 1
           ? true
           : false,
+        user_id: req.body.number ? req.body.color : data[0].number,
       };
       validateProject(project, res);
 

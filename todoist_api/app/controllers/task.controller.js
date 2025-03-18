@@ -104,6 +104,17 @@ export const deleteTask = (req, res) => {
   });
 };
 
+export const filterTasks = (req, res) => {
+  const filters = req.query;
+  Task.filter(filters, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    res.status(201).send(data);
+  });
+  console.log(filters);
+};
+
 function validateTask(task, res) {
   const parseResult = taskSchema.safeParse(task);
   if (!parseResult.success) {

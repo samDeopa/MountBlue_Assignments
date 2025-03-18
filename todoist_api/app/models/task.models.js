@@ -62,6 +62,36 @@ const Task = {
       callback(error, result);
     });
   },
+  filter: ({ project_id, due_date, is_completed, created_at }, callback) => {
+    let sql = "SELECT * FROM tasks";
+    if (
+      project_id ||
+      due_date ||
+      typeof is_completed !== "undefined" ||
+      created_at
+    ) {
+      sql += " WHERE 1=1";
+    }
+    if (project_id) {
+      sql += ` AND project_id = ${project_id}`;
+    }
+    if (due_date) {
+      sql += ` AND due_date = '${due_date}'`;
+    }
+    if (typeof is_completed !== "undefined") {
+      sql += ` AND is_completed = ${is_completed == "true" ? 1 : 0}`;
+    }
+    if (created_at) {
+      sql += ` AND created_at = '${created_at}'`;
+    }
+
+    db.query(sql, (err, results) => {
+      if (err) {
+        return callback(err);
+      }
+      callback(null, results);
+    });
+  },
 };
 
 export default Task;

@@ -2,6 +2,9 @@ import express from "express";
 import cors from "cors";
 import projectRouter from "./app/routes/project.routes.js";
 import taskRouter from "./app/routes/task.routes.js";
+import userRouter from "./app/routes/user.routes.js";
+
+import populateUsers from "./app/scripts/populateUsers.js";
 try {
   const app = express();
 
@@ -19,7 +22,7 @@ try {
   });
   app.use("/api/todoist/project", projectRouter);
   app.use("/api/todoist/task", taskRouter);
-
+  app.use("/api/todoist/user", userRouter);
   const PORT = 8080;
 
   app.listen(PORT, (err) => {
@@ -31,3 +34,5 @@ try {
 } catch (err) {
   console.log(err);
 }
+
+populateUsers();

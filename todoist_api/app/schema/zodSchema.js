@@ -4,6 +4,7 @@ const projectSchema = zod.object({
   name: zod.string(),
   color: zod.string(),
   is_favorite: zod.boolean(),
+  user_id: zod.number().optional(),
 });
 
 const taskSchema = zod.object({
@@ -14,4 +15,9 @@ const taskSchema = zod.object({
   created_at: zod.string(),
   project_id: zod.number(),
 });
-export { taskSchema, projectSchema };
+
+const userSchema = zod.object({
+  name: zod.string(),
+  email: zod.string(),
+});
+export { taskSchema, projectSchema, userSchema };
