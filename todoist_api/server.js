@@ -3,6 +3,7 @@ import cors from "cors";
 import projectRouter from "./app/routes/project.routes.js";
 import taskRouter from "./app/routes/task.routes.js";
 import userRouter from "./app/routes/user.routes.js";
+import commentRouter from "./app/routes/comment.router.js";
 
 import populateUsers from "./app/scripts/populateUsers.js";
 try {
@@ -23,6 +24,7 @@ try {
   app.use("/api/todoist/project", projectRouter);
   app.use("/api/todoist/task", taskRouter);
   app.use("/api/todoist/user", userRouter);
+  app.use("/api/todoist/comment", commentRouter);
   const PORT = 8080;
 
   app.listen(PORT, (err) => {
@@ -34,5 +36,3 @@ try {
 } catch (err) {
   console.log(err);
 }
-
-populateUsers();

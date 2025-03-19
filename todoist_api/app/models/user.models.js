@@ -1,46 +1,31 @@
-import db from "./db.js";
+import { users } from "../../drizzle/schema.js";
+import db from "../db/db.js";
 
-const User = {
-  getAll: (callback) => {
-    db.query("SELECT * FROM users", (error, results) => {
-      callback(error, results);
-    });
-  },
+const User = {};
 
-  getById: (id, callback) => {
-    db.query("SELECT * FROM users WHERE id = ?", [id], (error, results) => {
-      callback(error, results);
-    });
-  },
+// Create a new user
+User.create = async (userData) => {
+  return db.insert(users).values(userData);
+};
 
-  create: (userData, callback) => {
-    const query = `
-      INSERT INTO users (name, email) 
-      VALUES (?, ?)
-    `;
-    const values = [userData.name, userData.email];
-    db.query(query, values, (error, result) => {
-      callback(error, result);
-    });
-  },
+// Retrieve a user by id
+User.getById = (id) => {
+  return db.select().from(users).where({ id: id });
+};
 
-  update: (id, userData, callback) => {
-    const query = `
-      UPDATE users 
-      SET name = ?, email = ? 
-      WHERE id = ?
-    `;
-    const values = [userData.name, userData.email, id];
-    db.query(query, values, (error, result) => {
-      callback(error, result);
-    });
-  },
+// Retrieve all users
+User.getAll = () => {
+  return db.select().from(users);
+};
 
-  delete: (id, callback) => {
-    db.query("DELETE FROM users WHERE id = ?", [id], (error, result) => {
-      callback(error, result);
-    });
-  },
+// Update a user by id
+User.updateById = (id, userData) => {
+  return db.update(users).set(userData).where({ id: id });
+};
+
+// Remove a user by id
+User.remove = (id) => {
+  return db.delete(users).where({ id: id });
 };
 
 export default User;
