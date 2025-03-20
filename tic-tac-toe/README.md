@@ -96,4 +96,4 @@ tic-tac-toe-react/
 
 ## Acknowledgments
 
-This project was inspired by the official React [Tic Tac Toe tutorial](https://react.dev/learn/tutorial-tic-tac-toe) citeturn1search0 and various community examples that showcase state management and time travel in React.
+This project was inspired by the official React [Tic Tac Toe tutorial](https://react.dev/learn/tutorial-tic-tac-toe).
