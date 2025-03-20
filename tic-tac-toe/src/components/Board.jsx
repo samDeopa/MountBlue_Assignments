@@ -7,16 +7,15 @@ const Board = () => {
   const [winner, setWinner] = useState("");
   const [history, setHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(null);
-  const handleClick = (index) => {
-    if (values[index] !== "" || winner) return; // Prevent move if square is filled or game is over
 
-    // If we're currently viewing a past move, discard "future" history
+  const handleClick = (index) => {
     if (historyIndex != null) {
       setWinner("");
       const newHistory = history.slice(0, historyIndex + 1);
       setHistory(newHistory);
       setHistoryIndex(null);
     }
+    if (values[index] !== "" || winner) return;
 
     const newValues = [...values];
     newValues[index] = currentValue;
@@ -32,7 +31,7 @@ const Board = () => {
       setCurrentValue(currentValue === "X" ? "O" : "X");
     }
 
-    if ((history.length == 8) & !winner) {
+    if (history.length === 8 && !gameWinner) {
       setWinner("Its a Draw.");
     }
   };
@@ -40,7 +39,7 @@ const Board = () => {
   const handleHistoryClick = (arr, index) => {
     setHistoryIndex(index);
     setValues([...arr]);
-    setCurrentValue(index % 2 === 0 ? "O" : "X"); // Ensure correct turn
+    setCurrentValue(index % 2 === 0 ? "O" : "X");
   };
 
   const resetGame = () => {
@@ -90,18 +89,14 @@ const Board = () => {
       </button>
 
       <div className="flex flex-col gap-2">
-        {history.map((arr, index) => {
-          return (
-            <button
-              onClick={() => {
-                handleHistoryClick(arr, index);
-              }}
-            >
-              {" "}
-              Go to Move #{index + 1}
-            </button>
-          );
-        })}
+        {history.map((arr, index) => (
+          <button
+            key={index} // Add key prop here
+            onClick={() => handleHistoryClick(arr, index)}
+          >
+            Go to Move #{index + 1}
+          </button>
+        ))}
       </div>
     </div>
   );
