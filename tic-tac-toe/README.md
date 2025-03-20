@@ -1,7 +1,3 @@
-Below is an example of a README.md file you can include in your project repository:
-
----
-
 # Tic Tac Toe Game – React with Time Travel
 
 This is a tic-tac-toe game built with React Hooks. The project includes the following features:
@@ -29,14 +25,14 @@ These instructions will help you set up and run the project on your local machin
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) (v14 or later)
-- [npm](https://www.npmjs.com/) (usually comes with Node.js) or [yarn](https://yarnpkg.com/)
+- [npm](https://www.npmjs.com/) (usually comes with Node.js)
 
 ### Installation
 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/tic-tac-toe-react.git
+   git clone https://github.com/samDeopa/MountBlue_Assignments/tree/main/tic-tac-toe.git
    cd tic-tac-toe-react
    ```
 
@@ -98,22 +94,6 @@ tic-tac-toe-react/
 - **Reset:**  
   The reset button clears all the states and restarts the game.
 
-## Future Enhancements
-
-- Highlight the winning squares.
-- Display a draw message if no moves remain and there is no winner.
-- Refactor to use a reducer (using `useReducer`) for more complex state management.
-- Add animations or sound effects for a better user experience.
-
 ## Acknowledgments
 
-This project was inspired by the official React [Tic Tac Toe tutorial](https://react.dev/learn/tutorial-tic-tac-toe) citeturn1search0 and various community examples that showcase state management and time travel in React.  
-Feel free to explore other enhancements and learn more about React through additional resources.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-Feel free to customize this README.md to fit your project's details, add screenshots, or provide further instructions as needed.
+This project was inspired by the official React [Tic Tac Toe tutorial](https://react.dev/learn/tutorial-tic-tac-toe) citeturn1search0 and various community examples that showcase state management and time travel in React.
