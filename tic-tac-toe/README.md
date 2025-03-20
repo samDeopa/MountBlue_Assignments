@@ -9,6 +9,8 @@ This is a tic-tac-toe game built with React Hooks. The project includes the foll
 
 ## Demo
 
+[Deployement](https://tic-tac-toe-beta-sage-76.vercel.app/)
+
 ![Tic Tac Toe Demo](demo-screenshot.png)
 
 ## Features
