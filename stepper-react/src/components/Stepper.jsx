@@ -3,7 +3,7 @@ import ProgressBar from "./ProgressBar";
 import Button from "./Button";
 
 const Stepper = () => {
-  console.log("Rendering");
+  ("Rendering");
   const [currentStep, setCurrentStep] = useState(0);
 
   const messages = [
@@ -24,11 +24,11 @@ const Stepper = () => {
 
   useEffect(() => {
     const arr = stages.reduce((accumulator, stage, index) => {
-      console.log(currentStep, index);
+      currentStep, index;
 
       let currentState = "Unactive";
       if (index === currentStep) {
-        console.log("HI");
+        ("HI");
 
         currentState = "Active";
       } else if (index < currentStep) {
@@ -38,7 +38,7 @@ const Stepper = () => {
       return accumulator;
     }, {});
     setSteps(arr);
-    console.log(arr);
+    arr;
   }, [stages, currentStep]);
 
   return (

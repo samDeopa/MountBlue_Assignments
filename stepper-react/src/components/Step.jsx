@@ -19,7 +19,7 @@ const Step = ({ message, state, id, onClickHandler }) => {
   return (
     <div className=" flex flex-col justify-center items-center w-auto">
       <div className={classes.join(" ")} onClick={onClickHandler}>
-        {state === "Completed" ? "✔️" : id}
+        {state === "Completed" ? "✓" : id}
       </div>
       <p>{message}</p>
     </div>
