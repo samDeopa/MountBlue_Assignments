@@ -3,6 +3,7 @@ import formatDate from "../utils/formatDate";
 const MailList = ({
   mails,
   setSelectedMailIndex,
+  selectedMailIndex,
   preferences,
   markAsRead,
   filter,
@@ -66,7 +67,11 @@ const MailList = ({
                 }}
                 className={`flex gap-4  items-center  p-5 rounded-xl  ${
                   read ? "bg-white" : "bg-gray-300"
-                }`}
+                } ${
+                  mail.id === mails[selectedMailIndex]?.id
+                    ? "border-1 border-red-500"
+                    : ""
+                } `}
               >
                 <div className="flex justify-center items-center bg-red-400 rounded-full h-14 w-14 text-white text-xl font-bold ">
                   {mail.from.name.charAt(0).toUpperCase()}
@@ -82,7 +87,7 @@ const MailList = ({
                     Subject:{" "}
                     <span className="font-semibold">{mail.subject}</span>
                   </p>
-                  <p className=" truncate">{mail.short_description}</p>
+                  <p className="  truncate ">{mail.short_description}</p>
                   <div className="flex  gap-10 ">
                     <p>{formatDate(new Date(mail.date))}</p>
                     {fav ? (

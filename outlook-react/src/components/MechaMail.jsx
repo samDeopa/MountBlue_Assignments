@@ -49,6 +49,7 @@ const MechaMail = () => {
       <div className="flex gap-10 px-15">
         <MailList
           mails={mails}
+          selectedMailIndex={selectedMailIndex}
           setSelectedMailIndex={setSelectedMailIndex}
           preferences={preferences}
           markAsRead={markAsRead}
