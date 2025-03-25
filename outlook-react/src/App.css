@@ -1,0 +1,10 @@
+.mail-content {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.mail-content div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
