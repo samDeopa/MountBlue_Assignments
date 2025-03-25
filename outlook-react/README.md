@@ -1,7 +1,3 @@
-Below is an example of a README.md file for your MechaMail project:
-
----
-
 # MechaMail
 
 MechaMail is a simple email client built with React. It fetches emails from a mock API and lets you mark emails as read or favorite. The application persists your preferences in the browser's localStorage and offers a clean, responsive UI using Tailwind CSS.
@@ -11,7 +7,6 @@ MechaMail is a simple email client built with React. It fetches emails from a mo
 - **Email Fetching:** Retrieves a list of emails from the Flipkart Email Mock API.
 - **Mark as Read:** Mark individual emails as read.
 - **Favorite Emails:** Mark emails as favorite.
-- **State Management:** Uses React hooks (or `useReducer`) to manage state efficiently.
 - **Persistent Preferences:** Stores your read and favorite preferences in localStorage.
 - **Responsive Design:** Built with Tailwind CSS for a modern, responsive UI.
 
@@ -31,8 +26,8 @@ _Add a screenshot or GIF of your application here if available._
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/samdeopa/mechamail.git
-   cd mechamail
+   git clone https://github.com/samDeopa/MountBlue_Assignments/tree/main/outlook-react.git
+   cd outlook-react
    ```
 
 2. **Install Dependencies:**
