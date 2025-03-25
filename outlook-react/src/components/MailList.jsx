@@ -62,15 +62,13 @@ const MailList = ({
               <div
                 key={mail.id}
                 onClick={() => {
-                  setSelectedMailIndex(index);
+                  setSelectedMailIndex(mail.id);
                   markAsRead(mail.id);
                 }}
                 className={`flex gap-4  items-center  p-5 rounded-xl  ${
                   read ? "bg-white" : "bg-gray-300"
                 } ${
-                  mail.id === mails[selectedMailIndex]?.id
-                    ? "border-1 border-red-500"
-                    : ""
+                  mail.id === selectedMailIndex ? "border-1 border-red-500" : ""
                 } `}
               >
                 <div className="flex justify-center items-center bg-red-400 rounded-full h-14 w-14 text-white text-xl font-bold ">
