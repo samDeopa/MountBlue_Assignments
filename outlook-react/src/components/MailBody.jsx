@@ -1,19 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import formatDate from "../utils/formatDate";
 const MailBody = ({ mail, markAsFavorite }) => {
   const [mailBody, setMailBody] = useState(null);
+  const mailCache = useRef({});
+
   useEffect(() => {
     if (mail !== null) {
       setMailBody(null);
-      axios
-        .get(`https://flipkart-email-mock.vercel.app/?id=${mail.id}`)
-        .then(({ data }) => {
-          setMailBody(data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      if (mailCache[mail.id]) {
+        setMailBody(mailCache[mail.id]);
+      } else {
+        axios
+          .get(`https://flipkart-email-mock.vercel.app/?id=${mail.id}`)
+          .then(({ data }) => {
+            mailCache[mail.id] = data;
+            setMailBody(data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
     }
   }, [mail]);
   return mail != undefined ? (

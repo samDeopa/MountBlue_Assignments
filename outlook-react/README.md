@@ -7,12 +7,13 @@ MechaMail is a simple email client built with React. It fetches emails from a mo
 - **Email Fetching:** Retrieves a list of emails from the Flipkart Email Mock API.
 - **Mark as Read:** Mark individual emails as read.
 - **Favorite Emails:** Mark emails as favorite.
+- **Caching Mechanism:** Caches the email body using `useRef` to prevent redundant API calls for the same email.
 - **Persistent Preferences:** Stores your read and favorite preferences in localStorage.
 - **Responsive Design:** Built with Tailwind CSS for a modern, responsive UI.
 
 ## Demo
 
-_Add a screenshot or GIF of your application here if available._
+[[Deployement](https://mecha-mail.vercel.app/)]
 
 ## Getting Started
 
@@ -83,6 +84,14 @@ outllok-react/
 - **Header:** Contains the top navigation or branding.
 - **MailList:** Displays the list of emails and handles selection.
 - **MailBody:** Renders the content of the selected email and allows marking it as favorite.
+
+## Optimization Details
+
+- **Caching Email Bodies:**  
+  The `MailBody` component leverages the `useRef` hook to cache fetched email content. This ensures that if a user selects the same email multiple times, the content is loaded from the cache rather than re-fetching from the API.
+
+- **LocalStorage Integration:**  
+  User preferences for read and favorite emails are stored in localStorage, ensuring that the user's actions persist between sessions.
 
 ## Customization
 
