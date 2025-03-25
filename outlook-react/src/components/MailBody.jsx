@@ -4,7 +4,7 @@ import formatDate from "../utils/formatDate";
 const MailBody = ({ mail, markAsFavorite }) => {
   const [mailBody, setMailBody] = useState(null);
   useEffect(() => {
-    if (mail !== undefined) {
+    if (mail !== null) {
       setMailBody(null);
       axios
         .get(`https://flipkart-email-mock.vercel.app/?id=${mail.id}`)

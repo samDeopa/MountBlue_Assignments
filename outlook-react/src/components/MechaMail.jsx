@@ -6,7 +6,7 @@ import MailBody from "./MailBody";
 
 const MechaMail = () => {
   const [mails, setMails] = useState([]);
-  const [selectedMailIndex, setSelectedMailIndex] = useState(null);
+  const [selectedMail, setSelectedMail] = useState(null);
   const [filter, setFilter] = useState(null);
   const [preferences, setPreferences] = useState(
     JSON.parse(localStorage.getItem("preferences")) || {
@@ -42,6 +42,7 @@ const MechaMail = () => {
         setMails(data.list);
       })
       .catch((err) => console.log(err));
+    console.log("fetching from the server");
   }, []);
   return (
     <div className="text-[#333]">
@@ -49,17 +50,14 @@ const MechaMail = () => {
       <div className="flex gap-10 px-15">
         <MailList
           mails={mails}
-          selectedMailIndex={selectedMailIndex}
-          setSelectedMailIndex={setSelectedMailIndex}
+          selectedMail={selectedMail}
+          setSelectedMail={setSelectedMail}
           preferences={preferences}
           markAsRead={markAsRead}
           filter={filter}
           setFilter={setFilter}
         />
-        <MailBody
-          mail={mails[selectedMailIndex]}
-          markAsFavorite={markAsFavorite}
-        />
+        <MailBody mail={selectedMail} markAsFavorite={markAsFavorite} />
       </div>
     </div>
   );
