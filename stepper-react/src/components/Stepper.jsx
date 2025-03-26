@@ -20,31 +20,23 @@ const Stepper = () => {
     "Delivered",
   ]);
 
-  const [steps, setSteps] = useState({});
+  const stepsToRender = stages.reduce((accumulator, stage, index) => {
+    currentStep, index;
 
-  useEffect(() => {
-    const arr = stages.reduce((accumulator, stage, index) => {
-      currentStep, index;
-
-      let currentState = "Unactive";
-      if (index === currentStep) {
-        ("HI");
-
-        currentState = "Active";
-      } else if (index < currentStep) {
-        currentState = "Completed";
-      }
-      accumulator[index] = { message: stage, state: currentState };
-      return accumulator;
-    }, {});
-    setSteps(arr);
-    arr;
-  }, [stages, currentStep]);
+    let currentState = "Unactive";
+    if (index === currentStep) {
+      currentState = "Active";
+    } else if (index < currentStep) {
+      currentState = "Completed";
+    }
+    accumulator[index] = { message: stage, state: currentState };
+    return accumulator;
+  }, {});
 
   return (
     <div className="flex flex-col items-center gap-5">
       <ProgressBar
-        steps={steps}
+        steps={stepsToRender}
         currentStep={currentStep}
         setCurrentStep={setCurrentStep}
       />
