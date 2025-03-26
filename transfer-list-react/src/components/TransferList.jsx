@@ -101,45 +101,37 @@ const TransferList = () => {
       checked: false,
     },
   });
-  const [itemsState, setItemsState] = useState({
+  let itemsState = {
     left: 0,
     right: 0,
     leftSelected: 0,
     rightSelected: 0,
+  };
+
+  let leftSelected = 0,
+    rightSelected = 0,
+    left = 0,
+    right = 0;
+  Object.values(tasks).forEach((task) => {
+    if (task.list === "right") {
+      right++;
+      if (task.checked) {
+        rightSelected++;
+      }
+    } else {
+      left++;
+      if (task.checked) {
+        leftSelected++;
+      }
+    }
   });
 
-  useEffect(() => {
-    let leftSelected = 0,
-      rightSelected = 0,
-      left = 0,
-      right = 0;
-    Object.values(tasks).forEach((task) => {
-      if (task.list === "right") {
-        right++;
-        if (task.checked) {
-          rightSelected++;
-        }
-      } else {
-        left++;
-        if (task.checked) {
-          leftSelected++;
-        }
-      }
-    });
-    console.log({
-      left: left,
-      right: right,
-      leftSelected: leftSelected,
-      rightSelected: rightSelected,
-    });
-
-    setItemsState({
-      left: left,
-      right: right,
-      leftSelected: leftSelected,
-      rightSelected: rightSelected,
-    });
-  }, [tasks]);
+  itemsState = {
+    left: left,
+    right: right,
+    leftSelected: leftSelected,
+    rightSelected: rightSelected,
+  };
   const toggleItem = (uid) => {
     setTasks((prevTasks) => ({
       ...prevTasks,
