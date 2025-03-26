@@ -54,7 +54,7 @@ const Stepper = () => {
           onClickHandler={() => {
             setCurrentStep(currentStep + 1);
           }}
-          text="Next"
+          text={currentStep > 2 ? "Finish" : "Next"}
           disabled={currentStep == messages.length - 1 ? true : false}
         />
       </div>
