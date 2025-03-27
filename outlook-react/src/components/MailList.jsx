@@ -17,6 +17,7 @@ const MailList = ({
           onClick={() => {
             if (filter != "unread") setFilter("unread");
             else setFilter(null);
+            setSelectedMail(null);
           }}
           className={`${filter === "unread" && "bg-gray-400"} rounded-full p-2`}
         >
@@ -26,6 +27,7 @@ const MailList = ({
           onClick={() => {
             if (filter != "read") setFilter("read");
             else setFilter(null);
+            setSelectedMail(null);
           }}
           className={`${filter === "read" && "bg-gray-400"} rounded-full p-2`}
         >
@@ -35,6 +37,7 @@ const MailList = ({
           onClick={() => {
             if (filter != "favorite") setFilter("favorite");
             else setFilter(null);
+            setSelectedMail(null);
           }}
           className={`${
             filter === "favorite" && "bg-gray-400"
@@ -50,12 +53,15 @@ const MailList = ({
             else if (filter === "read") {
               return preferences.read.includes(mail.id);
             } else if (filter === "unread") {
-              return !preferences.read.includes(mail.id);
+              return (
+                !preferences.read.includes(mail.id) ||
+                mail.id === selectedMail?.id
+              );
             } else if (filter === "favorite") {
               return preferences.favorite.includes(mail.id);
             }
           })
-          .map((mail, index) => {
+          .map((mail) => {
             const read = preferences.read.includes(mail.id);
             const fav = preferences.favorite.includes(mail.id);
             return (
