@@ -54,8 +54,7 @@ const MailList = ({
               return preferences.read.includes(mail.id);
             } else if (filter === "unread") {
               return (
-                !preferences.read.includes(mail.id) ||
-                mail.id === selectedMail?.id
+                !preferences.read.includes(mail.id) || mail.id === selectedMail
               );
             } else if (filter === "favorite") {
               return preferences.favorite.includes(mail.id);
@@ -68,13 +67,13 @@ const MailList = ({
               <div
                 key={mail.id}
                 onClick={() => {
-                  setSelectedMail(mail);
+                  setSelectedMail(mail.id);
                   markAsRead(mail.id);
                 }}
                 className={`flex gap-4  items-center  p-5 rounded-xl  ${
                   read ? "bg-white" : "bg-gray-300"
                 } ${
-                  mail.id === selectedMail?.id ? "border-1 border-red-500" : ""
+                  mail.id === selectedMail ? "border-1 border-red-500" : ""
                 } `}
               >
                 <div className="flex justify-center items-center bg-red-400 rounded-full h-14 w-14 text-white text-xl font-bold ">

@@ -42,7 +42,6 @@ const MechaMail = () => {
         setMails(data.list);
       })
       .catch((err) => console.log(err));
-    console.log("fetching from the server");
   }, []);
   return (
     <div className="text-[#333]">
@@ -57,7 +56,11 @@ const MechaMail = () => {
           filter={filter}
           setFilter={setFilter}
         />
-        <MailBody mail={selectedMail} markAsFavorite={markAsFavorite} />
+        <MailBody
+          mail={mails.find((mail) => mail.id === selectedMail)}
+          markAsFavorite={markAsFavorite}
+          setSelectedMail={setSelectedMail}
+        />
       </div>
     </div>
   );
