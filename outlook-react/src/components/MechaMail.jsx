@@ -57,6 +57,7 @@ const MechaMail = () => {
           setFilter={setFilter}
         />
         <MailBody
+          key={selectedMail}
           mail={mails.find((mail) => mail.id === selectedMail)}
           markAsFavorite={markAsFavorite}
           setSelectedMail={setSelectedMail}

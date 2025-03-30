@@ -10,13 +10,13 @@ const MailBody = ({ mail, markAsFavorite, setSelectedMail }) => {
   useEffect(() => {
     if (mail !== null && mail != undefined) {
       setMailBody(null);
-      if (mailCache[mail.id]) {
-        setMailBody(mailCache[mail.id]);
+      if (mailCache.current[mail.id]) {
+        setMailBody(mailCache.current[mail.id]);
       } else {
         axios
           .get(`https://flipkart-email-mock.vercel.app/?id=${mail.id}`)
           .then(({ data }) => {
-            mailCache[mail.id] = data;
+            mailCache.current[mail.id] = data;
             setMailBody(data);
           })
           .catch((err) => {
@@ -26,6 +26,7 @@ const MailBody = ({ mail, markAsFavorite, setSelectedMail }) => {
       }
     }
   }, [mail]);
+
   return error === null ? (
     mail != undefined ? (
       mailBody != null ? (
