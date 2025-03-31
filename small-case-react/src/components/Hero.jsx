@@ -1,12 +1,19 @@
 import SideFilters from "./SideFilters";
+import StockList from "./StockList";
 
-const Hero = () => {
+const Hero = ({ stocks, filters, setFilters, investmentStrategy }) => {
   return (
-    <div className="flex ">
-      <div className="w-1/3">
-        <SideFilters />
+    <div className="flex gap-10 ">
+      <div className="w-1.2/6">
+        <SideFilters
+          filters={filters}
+          setFilters={setFilters}
+          investmentStrategy={investmentStrategy}
+        />
       </div>
-      <div className="w-2/3"></div>
+      <div className="w-4.8/6">
+        <StockList stocks={stocks} />
+      </div>
     </div>
   );
 };

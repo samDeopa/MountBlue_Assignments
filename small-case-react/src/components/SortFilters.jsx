@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const SortFilter = () => {
-  const [selectedSort, setSelectedSort] = useState("Popularity");
+const SortFilter = ({ sortFilter, setSortFilter }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -28,12 +27,12 @@ const SortFilter = () => {
       >
         <h3 className="text-sm font-light text-gray-500">
           Sort by{" "}
-          <span className="font-medium text-gray-800">{selectedSort}</span>
+          <span className="font-medium text-gray-800">{sortFilter}</span>
         </h3>
         {/* Chevron Icon */}
         <svg
-          className={`w-4 h-4 ml-2 transition-transform ${
-            isOpen ? "transform rotate-180" : ""
+          className={`w-4 h-4 ml-2 transition-transform duration-500 ${
+            isOpen ? "" : "transform rotate-180"
           } text-gray-600`}
           fill="currentColor"
           viewBox="0 0 20 20"
@@ -64,8 +63,8 @@ const SortFilter = () => {
                     type="radio"
                     name="sortFilter"
                     value={option}
-                    checked={selectedSort === option}
-                    onChange={(e) => setSelectedSort(e.target.value)}
+                    checked={sortFilter === option}
+                    onChange={(e) => setSortFilter(e.target.value)}
                     className="form-radio h-4 w-4 text-blue-600 border-gray-300"
                   />
                 </label>
@@ -83,9 +82,9 @@ const SortFilter = () => {
               {timePeriods.map((period) => (
                 <button
                   key={period}
-                  onClick={() => setSelectedSort(period + " (H → L)")}
+                  onClick={() => setSortFilter(period + " (H → L)")}
                   className={`text-sm px-3 py-1 rounded-full transition-colors ${
-                    selectedSort.substring(0, 2) === period
+                    sortFilter.substring(0, 2) === period
                       ? "bg-blue-600 text-white"
                       : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                   }`}
@@ -96,7 +95,7 @@ const SortFilter = () => {
             </div>
           </div>
 
-          {timePeriods.includes(selectedSort.substring(0, 2)) && (
+          {timePeriods.includes(sortFilter.substring(0, 2)) && (
             <div className="p-2">
               <h4 className="text-sm font-medium text-gray-400 my-2">
                 Order By
@@ -104,10 +103,10 @@ const SortFilter = () => {
               <div className="flex gap-2">
                 <button
                   onClick={() =>
-                    setSelectedSort(selectedSort.substring(0, 2) + " (H → L)")
+                    setSortFilter(sortFilter.substring(0, 2) + " (H → L)")
                   }
                   className={`text-sm px-3 py-1 rounded-full transition-colors ${
-                    selectedSort.substring(3) === "(H → L)"
+                    sortFilter.substring(3) === "(H → L)"
                       ? "bg-blue-600 text-white"
                       : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                   }`}
@@ -116,10 +115,10 @@ const SortFilter = () => {
                 </button>
                 <button
                   onClick={() =>
-                    setSelectedSort(selectedSort.substring(0, 2) + " (L → H)")
+                    setSortFilter(sortFilter.substring(0, 2) + " (L → H)")
                   }
                   className={`text-sm px-3 py-1 rounded-full transition-colors ${
-                    selectedSort.substring(3) === "(L → H)"
+                    sortFilter.substring(3) === "(L → H)"
                       ? "bg-blue-600 text-white"
                       : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                   } `}
