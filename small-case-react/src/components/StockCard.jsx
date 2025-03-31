@@ -1,6 +1,31 @@
 import React from "react";
 
-const StockCard = ({ stock }) => {
+const StockCard = ({ stock, sortFilter }) => {
+  let cagrValue;
+  let cagrDuration;
+  if (sortFilter?.startsWith("1M")) {
+    cagrValue = stock.stats?.returns.monthly;
+    cagrDuration = "1M Returns";
+  } else if (sortFilter?.startsWith("6M")) {
+    cagrValue = stock.stats?.returns.halfyearly;
+    cagrDuration = "6M Returns";
+  } else if (sortFilter?.startsWith("1Y")) {
+    cagrValue = stock.stats.ratios?.cagr1y;
+    cagrDuration = "1Y CAGR";
+  } else if (sortFilter?.startsWith("3Y")) {
+    cagrValue = stock.stats.ratios?.cagr3y;
+    cagrDuration = "3Y CAGR";
+  } else if (sortFilter?.startsWith("5Y")) {
+    cagrValue = stock.stats.ratios?.cagr5y;
+    cagrDuration = "5Y CAGR";
+  }
+  if (!cagrValue) {
+    cagrValue = stock.platformData?.ratios?.cagr;
+    cagrDuration = stock.platformData?.ratios?.cagrDuration;
+  }
+
+  const formattedCagr = ((cagrValue || 0) * 100).toFixed(2);
+
   if (!stock) return null;
 
   return (
@@ -36,12 +61,8 @@ const StockCard = ({ stock }) => {
         </div>
 
         <div className="">
-          <p className="text-sm text-gray-500">
-            {stock.platformData?.ratios?.cagrDuration}
-          </p>
-          <p className=" font-medium text-green-600">
-            {((stock.platformData?.ratios?.cagr || 0) * 100).toFixed(2)}%
-          </p>
+          <p className="text-sm text-gray-500">{cagrDuration}</p>
+          <p className=" font-medium text-green-600">{formattedCagr}%</p>
         </div>
 
         <div>

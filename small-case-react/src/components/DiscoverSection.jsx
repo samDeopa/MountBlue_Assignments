@@ -143,6 +143,7 @@ const DiscoverSection = () => {
         filters={filters}
         investmentStrategy={investmentStrategy}
         setFilters={setFilters}
+        sortFilter={sortFilter}
       />
     </div>
   );

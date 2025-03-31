@@ -1,11 +1,25 @@
 import React from "react";
 
 const SideFilters = ({ filters, setFilters, investmentStrategy }) => {
+  const calculateNoOfFilters = () => {
+    let count = 0;
+    count += filters.subscriptionType != "Show all" ? 1 : 0;
+    count += filters.investmentAmount != "Any" ? 1 : 0;
+    count += filters.volatility.size;
+    count += filters.includeNew ? 1 : 0;
+    count += filters.investmentStrategy.size;
+    return count;
+  };
   return (
     <div className="flex flex-col text-[#535b62]">
       {/* Header */}
       <div className="flex justify-between font-light text-gray-400 border-b border-[#dde0e4] py-3 mb-6">
-        <p className="text-gray-500">Filters</p>
+        <p className="text-gray-500">
+          Filters{" "}
+          <span className="bg-gray-300 py-1 px-2 text-sm rounded">
+            {calculateNoOfFilters()}
+          </span>
+        </p>
         <button
           className="text-xs font-semibold"
           onClick={() =>
